@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "acorns-web": {
+    "acorns_web": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/acorns-web",
+            "outputPath": "dist/acorns_web",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "acorns-web:build"
+            "browserTarget": "acorns_web:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "acorns-web:build:production"
+              "browserTarget": "acorns_web:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "acorns-web:build"
+            "browserTarget": "acorns_web:build"
           }
         },
         "test": {
@@ -116,16 +116,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "acorns-web:serve"
+            "devServerTarget": "acorns_web:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "acorns-web:serve:production"
+              "devServerTarget": "acorns_web:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "acorns-web"
+  "defaultProject": "acorns_web"
 }

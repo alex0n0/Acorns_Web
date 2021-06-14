@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', async () => {
     await page.navigateTo();
-    expect(await page.getTitleText()).toEqual('acorns-web app is running!');
+    expect(await page.getTitleText()).toEqual('acorns_web app is running!');
   });
 
   afterEach(async () => {
