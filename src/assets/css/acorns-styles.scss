@@ -1,0 +1,15 @@
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+  --app-primary-l: #B2DE98;
+  --app-primary: #5DB12B;
+  --app-primary-d: #276800;
+  --app-secondary: #323232;
+}
+
+@import "./acorns/alerts";
+@import "./acorns/dropdowns";
+@import "./acorns/links";
+@import "./acorns/text";
+@import "./acorns/utilities";

@@ -1,0 +1,13 @@
+a:hover {
+  cursor: pointer;
+}
+
+a.u-0 {
+  text-decoration: none;
+
+  &.hover-u-1 {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
