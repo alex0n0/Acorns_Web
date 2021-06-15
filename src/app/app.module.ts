@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 // import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QRCodeModule } from 'angularx-qrcode';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
 // angular material modules
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,9 +19,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { DashboardScreenComponent } from './modules/dashboard-screen/dashboard-screen.component';
 import { CardsScreenComponent } from './modules/cards-screen/cards-screen.component';
 import { CreateCardScreenComponent } from './modules/create-card-screen/create-card-screen.component';
+import { EditCardScreenComponent } from './modules/edit-card-screen/edit-card-screen.component';
 import { RewardProfilesScreenComponent } from './modules/reward-profiles-screen/reward-profiles-screen.component';
 import { SettingsScreenComponent } from './modules/settings-screen/settings-screen.component';
-import { ScannerScreenComponent } from './modules/scanner-screen/scanner-screen.component';
 import { PageNotFoundScreenComponent } from './modules/page-not-found-screen/page-not-found-screen.component';
 // components
 import { AppComponent } from './app.component';
@@ -39,10 +38,10 @@ import { SidenavComponent } from './shared/components/sidenav/sidenav.component'
     DashboardScreenComponent,
     CardsScreenComponent,
     CreateCardScreenComponent,
+    EditCardScreenComponent,
     RewardProfilesScreenComponent,
-    PageNotFoundScreenComponent,
     SettingsScreenComponent,
-    ScannerScreenComponent,
+    PageNotFoundScreenComponent,
     // components
     AppComponent,
     HeaderComponent,
@@ -58,7 +57,6 @@ import { SidenavComponent } from './shared/components/sidenav/sidenav.component'
     HttpClientModule,
     BrowserAnimationsModule, // NoopAnimationsModule, // prevents ripples
     QRCodeModule,
-    ZXingScannerModule,
     // angular material components
     MatToolbarModule,
     MatButtonModule,

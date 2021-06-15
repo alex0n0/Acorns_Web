@@ -18,6 +18,6 @@ export class BreadcrumbsComponent implements OnInit {
 
 export type Breadcrumb = {
   path:string,
-  url:string,
+  url?:string,
   isMatchingRoute?: boolean
 }

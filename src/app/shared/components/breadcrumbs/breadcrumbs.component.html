@@ -4,7 +4,7 @@
       {{ breadcrumb.path }}
     </span>
     <ng-template #breadcrumbLink>
-      <a [routerLink]="breadcrumb.url" class="text-accent hover-black u-0 u-hover">{{ breadcrumb.path }}</a>
+      <a [routerLink]="breadcrumb.url" class="text-accent hover-accent u-0 hover-u b-5">{{ breadcrumb.path }}</a>
     </ng-template>
     <span *ngIf="i !== breadcrumbs.length - 1">&nbsp;/&nbsp;</span>
   </ng-container>

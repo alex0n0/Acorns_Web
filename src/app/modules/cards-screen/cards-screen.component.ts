@@ -11,13 +11,14 @@ import { Breadcrumb } from 'src/app/shared/components/breadcrumbs/breadcrumbs.co
 export class CardsScreenComponent implements OnInit, OnDestroy {
 
   $cards:Subscription | undefined;
+
   activeCards:any[] = [];
   inactiveCards:any[] = [];
+  activeCardExists:boolean = false;
 
   breadcrumbs:Breadcrumb[] = [
     {
       path: 'Cards',
-      url: '/cards',
       isMatchingRoute: true
     }
   ];
@@ -28,6 +29,7 @@ export class CardsScreenComponent implements OnInit, OnDestroy {
     this.$cards = this.miscService.getCards().subscribe(res => {
       this.activeCards = res.active;
       this.inactiveCards = res.inactive;
+      this.activeCardExists = res.active.length > 0 ? true : false;
     });
   }
 

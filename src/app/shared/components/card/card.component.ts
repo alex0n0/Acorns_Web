@@ -10,7 +10,9 @@ export class CardComponent implements OnInit {
   @Input() options = {
     overrideDesign: false
   }
+
   @Input() card:any;
+  @Input() activeCardExists:boolean = false;
 
   constructor() { }
 

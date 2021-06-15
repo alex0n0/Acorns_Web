@@ -20,7 +20,7 @@ $acorn-theme: mat-light-theme((
 $app-primary-l: mat-color($mat-grey, 800);
 $app-primary: mat-color($mat-grey, 900);
 $app-primary-d: mat-color($mat-grey, 900);
-$app-accent-l: mat-color($mat-light-green, A200);
+$app-accent-l: #b9e789;
 $app-accent: mat-color($mat-light-green, 600);
 $app-accent-d: mat-color($mat-light-green, 900);
 
@@ -37,7 +37,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 @import "./acorns/alerts";
+@import "./acorns/borders";
 @import "./acorns/dropdowns";
 @import "./acorns/links";
+@import "./acorns/qrcode";
 @import "./acorns/text";
 @import "./acorns/utilities";

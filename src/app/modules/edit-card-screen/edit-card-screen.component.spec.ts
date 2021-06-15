@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ScannerScreenComponent } from './scanner-screen.component';
+import { EditCardScreenComponent } from './edit-card-screen.component';
 
-describe('ScannerScreenComponent', () => {
-  let component: ScannerScreenComponent;
-  let fixture: ComponentFixture<ScannerScreenComponent>;
+describe('EditCardScreenComponent', () => {
+  let component: EditCardScreenComponent;
+  let fixture: ComponentFixture<EditCardScreenComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ScannerScreenComponent ]
+      declarations: [ EditCardScreenComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ScannerScreenComponent);
+    fixture = TestBed.createComponent(EditCardScreenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

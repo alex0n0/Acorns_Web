@@ -4,16 +4,45 @@
   .spacer {
     padding-top: 63%;
   }
-  .body {
+  & > .body {
     position: absolute;
     top: 0px;
     height: 100%;
     width: 100%;
-    .card_contents {
+    .card__contents {
       height: 100%;
-      padding: 1rem;
-      background-color: #666;
+      background-color: rgb(73, 73, 73);
+      background-image: url("../../../../assets/images/Acorns_grey.png");
+      background-size: 40%;
+      background-repeat: no-repeat;
+      background-position: center;
       color: white;
+
+      .card__body {
+        .card__options-button {
+          position: absolute;
+          top: 0rem;
+          right: 0rem;
+        }
+      }
+
+      .card__qrcode {
+        position: absolute;
+        bottom: 0.5rem;
+        right: 0.5rem;
+        width: 25%;
+        .spacer {
+          width: 100%;
+          padding-top: 100%;
+        }
+        & > .body {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 100%;
+          height: 100%;
+        }
+      }
     }
   }
 }
