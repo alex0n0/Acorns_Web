@@ -14,6 +14,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 // pages
 import { DashboardScreenComponent } from './modules/dashboard-screen/dashboard-screen.component';
@@ -30,6 +31,7 @@ import { BreadcrumbsComponent } from './shared/components/breadcrumbs/breadcrumb
 import { CreateCardFormComponent } from './modules/create-card-screen/components/create-card-form/create-card-form.component';
 import { CardComponent } from './shared/components/card/card.component';
 import { ContinueCardCreateAlertComponent } from './modules/cards-screen/components/continue-card-create-alert/continue-card-create-alert.component';
+import { SidenavComponent } from './shared/components/sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { ContinueCardCreateAlertComponent } from './modules/cards-screen/compone
     CreateCardFormComponent,
     ContinueCardCreateAlertComponent,
     BreadcrumbsComponent,
+    SidenavComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,8 @@ import { ContinueCardCreateAlertComponent } from './modules/cards-screen/compone
     MatMenuModule,
     MatIconModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,6 +1,11 @@
 <header>
-  <div class="h-100 position-relative container d-flex align-items-center">
-    <a routerLink="/" class="me-auto logo text-nowrap"><img src="../../../../assets/images/Acorns.png"/>Acorns</a>
+  <div class="h-100 position-relative container-md d-flex align-items-center">
+    <button mat-icon-button (click)="toggleDrawer()" class="d-md-none me-2">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a routerLink="/" class="me-auto logo text-nowrap"
+      ><img src="../../../../assets/images/Acorns.png" />Acorns</a
+    >
 
     <nav class="header__nav d-none d-md-flex">
       <a
@@ -16,24 +21,22 @@
       </a>
     </nav>
 
-    <button mat-button [matMenuTriggerFor]="profileDropdown" class="px-2 profileDropdown">
-      <mat-icon>account_circle</mat-icon>
-      <span [class.ms-1]="true">{{true ? 'John Citizen': null}}</span>
-    </button>
-    <mat-menu #profileDropdown="matMenu" xPosition="before" class="profileDropdown__menu">
-      <a
-      mat-menu-item
-      routerLink="/settings"
-      >
-      Settings
-    </a>
-    <a
-      mat-menu-item
-      routerLink="/scanner"
+    <button
+      mat-button
+      [matMenuTriggerFor]="profileDropdown"
+      class="px-2 profileDropdown d-none d-sm-block"
     >
-      Scanner
-    </a>
-    <button mat-menu-item>Sign out</button>
+      <mat-icon>account_circle</mat-icon>
+      <span [class.ms-1]="true">{{ true ? "John Citizen" : null }}</span>
+    </button>
+    <mat-menu
+      #profileDropdown="matMenu"
+      xPosition="before"
+      class="profileDropdown__menu"
+    >
+      <a mat-menu-item routerLink="/settings">Settings</a>
+      <a mat-menu-item routerLink="/scanner">Scanner</a>
+      <button mat-menu-item class="text-danger">Sign out</button>
     </mat-menu>
   </div>
 </header>

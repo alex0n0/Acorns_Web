@@ -1,0 +1,38 @@
+<div class="sidenav">
+  <div class="sidenav__contents">
+    <nav class="mb-auto sidenav__contents__nav">
+      <ul class="list-unstyled">
+        <li>
+          <a
+            routerLink="/"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLinkActive="active"
+          >
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a routerLink="/cards" routerLinkActive="active">Cards</a>
+        </li>
+        <li>
+          <a routerLink="/reward-profiles" routerLinkActive="active">
+            Reward Profiles
+          </a>
+        </li>
+        <li>
+          <a routerLink="/settings" routerLinkActive="active">Settings</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="mt-5 sidenav__contents__nav d-sm-none">
+      <ul class="list-unstyled">
+        <li>
+          <a routerLink="/scanner">Scanner</a>
+        </li>
+        <li>
+          <button class="sidenav__button text-danger">Sign out</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

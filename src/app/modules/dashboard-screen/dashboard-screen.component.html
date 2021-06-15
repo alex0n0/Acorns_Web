@@ -1,4 +1,12 @@
-<app-header></app-header>
-<div class="pt-100 container">
-  <h1 class="text-center">Welcome</h1>
-</div>
+<mat-drawer-container [hasBackdrop]="true">
+  <mat-drawer #drawer [mode]="'over'">
+    <app-sidenav></app-sidenav>
+  </mat-drawer>
+  <mat-drawer-content style="min-height: 100vh">
+    <app-header (drawerToggled)="drawer.toggle()"></app-header>
+    <div class="pt-100 container-md">
+      <h1 class="text-center">Welcome</h1>
+      <p>asdf</p>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

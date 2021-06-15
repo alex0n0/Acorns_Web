@@ -1,7 +1,16 @@
-<app-header></app-header>
-<div class="pt-100 container">
-  <h1 class="text-center">The page you are looking for does not exist</h1>
-  <p class="text-center">
-    <a routerLink="/" class="text-accent u-0 hover-u-1 b-5">Return home instead</a>
-  </p>
-</div>
+<mat-drawer-container [hasBackdrop]="true">
+  <mat-drawer #drawer [mode]="'over'">
+    <app-sidenav></app-sidenav>
+  </mat-drawer>
+  <mat-drawer-content style="min-height: 100vh">
+    <app-header (drawerToggled)="drawer.toggle()"></app-header>
+    <div class="pt-100 container-md">
+      <h1 class="text-center">The page you are looking for does not exist</h1>
+      <p class="text-center">
+        <a routerLink="/" class="text-accent u-0 hover-u-1 b-5"
+          >Return home instead</a
+        >
+      </p>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

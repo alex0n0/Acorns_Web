@@ -1,11 +1,18 @@
-<app-header></app-header>
-<div class="pt-100 container">
-  <h1>Scanner</h1>
-  <zxing-scanner
-    [formats]="allowedFormats"
-    (scanSuccess)="scanSuccessHandler($event)"
-    (scanError)="scanErrorHandler($event)"
-    (scanFailure)="scanFailureHandler($event)"
-    (scanComplete)="scanCompleteHandler($event)"
-  ></zxing-scanner>
-</div>
+<mat-drawer-container [hasBackdrop]="true">
+  <mat-drawer #drawer [mode]="'over'">
+    <app-sidenav></app-sidenav>
+  </mat-drawer>
+  <mat-drawer-content style="min-height: 100vh">
+    <app-header (drawerToggled)="drawer.toggle()"></app-header>
+    <div class="pt-100 container-md">
+      <h1>Scanner</h1>
+      <zxing-scanner
+        [formats]="allowedFormats"
+        (scanSuccess)="scanSuccessHandler($event)"
+        (scanError)="scanErrorHandler($event)"
+        (scanFailure)="scanFailureHandler($event)"
+        (scanComplete)="scanCompleteHandler($event)"
+      ></zxing-scanner>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

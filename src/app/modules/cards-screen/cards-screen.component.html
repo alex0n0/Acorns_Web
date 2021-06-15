@@ -1,82 +1,70 @@
-<app-header></app-header>
-<div class="pt-100 pb-200 container">
-  <app-continue-card-create-alert ></app-continue-card-create-alert>
+<mat-drawer-container [hasBackdrop]="true">
+  <mat-drawer #drawer [mode]="'over'">
+    <app-sidenav></app-sidenav>
+  </mat-drawer>
+  <mat-drawer-content style="min-height: 100vh">
+    <app-header (drawerToggled)="drawer.toggle()"></app-header>
+    <div class="pt-100 pb-200 container-md">
+      <app-continue-card-create-alert></app-continue-card-create-alert>
 
-  <!-- <app-breadcrumbs [breadcrumbs]="breadcrumbs" ></app-breadcrumbs> -->
+      <!-- <app-breadcrumbs [breadcrumbs]="breadcrumbs" ></app-breadcrumbs> -->
 
-  <h1>Cards</h1>
+      <h1>Cards</h1>
 
-  <section class="mt-5">
-    <h2>Active Cards</h2>
-    <div class="row">
-      <div *ngIf="activeCards.length === 0" class="mb-3 col-12 col-sm-6 col-md-4">
-        <app-card [options]="{overrideDesign: true}">
+      <section class="mt-5">
+        <h2>Active Cards</h2>
+        <div class="row">
           <div
-            class="
-              contents
-              h-100
-              d-flex
-              flex-column
-              align-items-center
-              justify-content-center
-            "
-            style="background-color: #f6f6f6;"
+            *ngIf="activeCards.length === 0"
+            class="mb-3 col-12 col-sm-6 col-md-4"
           >
-            <span class="text-muted">Add a card</span>
+            <app-card [options]="{ overrideDesign: true }">
+              <div class="p-3 px-5 card_contents border rounded">
+                <span class="text-muted">Add a card</span>
+              </div>
+            </app-card>
           </div>
-        </app-card>
-      </div>
-      <ng-container *ngFor="let card of activeCards">
-        <div class="mb-3 col-12 col-sm-6 col-md-4">
-          <app-card [card]="card"></app-card>
+          <ng-container *ngFor="let card of activeCards">
+            <div class="mb-3 col-12 col-sm-6 col-md-4">
+              <app-card [card]="card"></app-card>
+            </div>
+          </ng-container>
         </div>
-      </ng-container>
-    </div>
-  </section>
+      </section>
 
-  <section class="mt-5">
-    <h2>Inactive Cards</h2>
-    <div class="row">
-      <div class="mb-3 col-12 col-sm-6 col-md-4">
-        <app-card [options]="{overrideDesign: true}">
-          <div
-            class="
-              contents
-              p-3
-              px-5
-              h-100
-              d-flex
-              flex-column
-              align-items-center
-              justify-content-center
-            "
-            style="background-color: #f6f6f6;"
-          >
-            <ng-container *ngIf="true">
-              <a
-                routerLink="/cards/create-card/87548765"
-                mat-stroked-button
-                color="primary"
-                class="w-100"
-                ><span class="d-block text-truncate">Continue</span></a
-              >
-              <span class="my-2">OR</span>
-            </ng-container>
-            <a
-              routerLink="/cards/create-card"
-              mat-flat-button
-              color="primary"
-              class="w-100"
-              ><span class="d-block text-truncate">Create new card</span></a
-            >
+      <section class="mt-5">
+        <h2>Inactive Cards</h2>
+        <div class="row">
+          <div class="mb-3 col-12 col-sm-6 col-md-4">
+            <app-card [options]="{ overrideDesign: true }">
+              <div class="p-3 px-5 card_contents border rounded">
+                <ng-container *ngIf="true">
+                  <a
+                    routerLink="/cards/create-card/87548765"
+                    mat-stroked-button
+                    color="primary"
+                    class="w-100"
+                    ><span class="d-block text-truncate">Continue</span></a
+                  >
+                  <span class="my-2">OR</span>
+                </ng-container>
+                <a
+                  routerLink="/cards/create-card"
+                  mat-flat-button
+                  color="primary"
+                  class="w-100"
+                  ><span class="d-block text-truncate">Create new card</span></a
+                >
+              </div>
+            </app-card>
           </div>
-        </app-card>
-      </div>
-      <ng-container *ngFor="let card of inactiveCards">
-        <div class="mb-3 col-12 col-sm-6 col-md-4">
-          <app-card [card]="card"></app-card>
+          <ng-container *ngFor="let card of inactiveCards">
+            <div class="mb-3 col-12 col-sm-6 col-md-4">
+              <app-card [card]="card"></app-card>
+            </div>
+          </ng-container>
         </div>
-      </ng-container>
+      </section>
     </div>
-  </section>
-</div>
+  </mat-drawer-content>
+</mat-drawer-container>
