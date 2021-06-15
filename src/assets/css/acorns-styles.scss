@@ -1,11 +1,39 @@
+@import '~@angular/material/theming';
+@include mat-core();
+$acorn-primary: mat-palette($mat-grey, 900);
+$acorn-accent:  mat-palette($mat-light-green, 700);
+$acorn-theme: mat-light-theme((
+  color: (
+    primary: $acorn-primary,
+    accent: $acorn-accent,
+  )
+));
+@include angular-material-theme($acorn-theme);
+
+// $app-primary-l: #323232 default;
+// $app-primary: #323232 default;
+// $app-primary-d: #323232 default;
+// $app-accent-l: #B2DE98 default;
+// $app-accent: #5DB12B default;
+// $app-accent-d: #276800 default;
+
+$app-primary-l: mat-color($mat-grey, 800);
+$app-primary: mat-color($mat-grey, 900);
+$app-primary-d: mat-color($mat-grey, 900);
+$app-accent-l: mat-color($mat-light-green, A200);
+$app-accent: mat-color($mat-light-green, 600);
+$app-accent-d: mat-color($mat-light-green, 900);
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 :root {
-  --app-primary-l: #B2DE98;
-  --app-primary: #5DB12B;
-  --app-primary-d: #276800;
-  --app-secondary: #323232;
+  --app-primary-l: #{$app-primary-l};
+  --app-primary: #{$app-primary};
+  --app-primary-d: #{$app-primary-d};
+  --app-accent-l: #{$app-accent-l};
+  --app-accent: #{$app-accent};
+  --app-accent-d: #{$app-accent-d};
 }
 
 @import "./acorns/alerts";

@@ -1,0 +1,19 @@
+.card {
+  position: relative;
+  width: 100%;
+  .spacer {
+    padding-top: 63%;
+  }
+  .body {
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    .contents {
+      height: 100%;
+      padding: 1rem;
+      background-color: #666;
+      color: white;
+    }
+  }
+}

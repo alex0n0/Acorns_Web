@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Breadcrumb } from 'src/app/shared/components/breadcrumbs/breadcrumbs.component';
 
 @Component({
   selector: 'app-create-card-screen',
@@ -7,6 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateCardScreenComponent implements OnInit {
 
+  breadcrumbs:Breadcrumb[] = [
+    {
+      path: 'Cards',
+      url: '/cards'
+    },
+    {
+      path: 'Create Card',
+      url: '/cards/create-card',
+      isMatchingRoute: true
+    }
+  ];
+  
   constructor() { }
 
   ngOnInit(): void {

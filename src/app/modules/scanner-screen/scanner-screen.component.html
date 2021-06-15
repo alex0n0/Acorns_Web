@@ -1,0 +1,11 @@
+<app-header></app-header>
+<div class="pt-100 container">
+  <h1>Scanner</h1>
+  <zxing-scanner
+    [formats]="allowedFormats"
+    (scanSuccess)="scanSuccessHandler($event)"
+    (scanError)="scanErrorHandler($event)"
+    (scanFailure)="scanFailureHandler($event)"
+    (scanComplete)="scanCompleteHandler($event)"
+  ></zxing-scanner>
+</div>

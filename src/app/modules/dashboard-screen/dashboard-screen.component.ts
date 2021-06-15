@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AsdfService } from 'src/app/core/services/http/asdf.service';
+import { MiscService } from 'src/app/core/services/http/misc.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -7,13 +7,13 @@ import { Subscription } from 'rxjs';
   templateUrl: './dashboard-screen.component.html',
   styleUrls: ['./dashboard-screen.component.scss']
 })
-export class DashboardScreenComponent implements OnInit {
+export class DashboardScreenComponent implements OnInit, OnDestroy {
   $users: Subscription | undefined;
 
-  constructor(private asdfService: AsdfService) { }
+  constructor(private miscService: MiscService) { }
 
   ngOnInit(): void {
-    this.$users = this.asdfService.getUsers().subscribe(res => {
+    this.$users = this.miscService.getUsers().subscribe(res => {
       console.log(res);
     });
   }

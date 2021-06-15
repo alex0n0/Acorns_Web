@@ -1,4 +1,11 @@
-<div>
-  this is my card
-  active
+<div class="card rounded">
+  <div class="spacer"></div>
+  <div class="body">
+    <ng-content *ngIf="options.overrideDesign" select=".contents"></ng-content>
+    <ng-container *ngIf="!options.overrideDesign">
+      <div class="contents rounded">
+        <qrcode *ngIf="card" [qrdata]="card.id" [width]="150" [errorCorrectionLevel]="'M'"></qrcode>
+      </div>
+    </ng-container>
+  </div>
 </div>

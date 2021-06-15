@@ -2,10 +2,18 @@ a:hover {
   cursor: pointer;
 }
 
+a.hover-accent:hover {
+  color: var(--app-accent) !important;
+}
+
+a.hover-black:hover {
+  color: black !important;
+}
+
 a.u-0 {
   text-decoration: none;
 
-  &.hover-u-1 {
+  &.u-hover {
     &:hover {
       text-decoration: underline;
     }

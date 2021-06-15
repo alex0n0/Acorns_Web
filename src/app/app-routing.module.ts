@@ -5,6 +5,7 @@ import { CardsScreenComponent } from './modules/cards-screen/cards-screen.compon
 import { CreateCardScreenComponent } from './modules/create-card-screen/create-card-screen.component';
 import { RewardProfilesScreenComponent } from './modules/reward-profiles-screen/reward-profiles-screen.component';
 import { SettingsScreenComponent } from './modules/settings-screen/settings-screen.component';
+import { ScannerScreenComponent } from './modules/scanner-screen/scanner-screen.component';
 import { PageNotFoundScreenComponent } from './modules/page-not-found-screen/page-not-found-screen.component';
 
 const routes: Routes = [
@@ -20,9 +21,14 @@ const routes: Routes = [
   {
     path: 'cards',
     component: CardsScreenComponent,
+    pathMatch: 'full'
   },
   {
-    path: 'create-card',
+    path: 'cards/create-card',
+    component: CreateCardScreenComponent,
+  },
+  {
+    path: 'cards/create-card/:id',
     component: CreateCardScreenComponent,
   },
   {
@@ -32,6 +38,10 @@ const routes: Routes = [
   {
     path: 'settings',
     component: SettingsScreenComponent,
+  },
+  {
+    path: 'scanner',
+    component: ScannerScreenComponent,
   },
   {
     path: '**',

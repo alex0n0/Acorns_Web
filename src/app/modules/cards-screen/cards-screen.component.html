@@ -1,15 +1,82 @@
 <app-header></app-header>
-<div class="pt-100 container">
-  <div class="mb-5 px-3 py-2 alert">
-    You are currently creating a card. Would you like to <a class="b-5 text-white" routerLink="/cards">continue</a> creating that card or <a class="b-5 text-white" routerLink="/cards">create a new card</a>?
-    <button mat-icon-button class="float-end" style="transform: translate(1rem, -0.6rem);" disableRipple><mat-icon>close</mat-icon></button>
-  </div>
-  <h2>Active Cards</h2>
-  
-  <h2>Inactive Cards</h2>
-  <div class="row">
-    <div class="col-6">asdf</div>
-    <div class="col-6">asdf</div>
-  </div>
-  <p>cards</p>
+<div class="pt-100 pb-200 container">
+  <app-continue-card-create-alert ></app-continue-card-create-alert>
+
+  <!-- <app-breadcrumbs [breadcrumbs]="breadcrumbs" ></app-breadcrumbs> -->
+
+  <h1>Cards</h1>
+
+  <section class="mt-5">
+    <h2>Active Cards</h2>
+    <div class="row">
+      <div *ngIf="activeCards.length === 0" class="mb-3 col-12 col-sm-6 col-md-4">
+        <app-card [options]="{overrideDesign: true}">
+          <div
+            class="
+              contents
+              h-100
+              d-flex
+              flex-column
+              align-items-center
+              justify-content-center
+            "
+            style="background-color: #f6f6f6;"
+          >
+            <span class="text-muted">Add a card</span>
+          </div>
+        </app-card>
+      </div>
+      <ng-container *ngFor="let card of activeCards">
+        <div class="mb-3 col-12 col-sm-6 col-md-4">
+          <app-card [card]="card"></app-card>
+        </div>
+      </ng-container>
+    </div>
+  </section>
+
+  <section class="mt-5">
+    <h2>Inactive Cards</h2>
+    <div class="row">
+      <div class="mb-3 col-12 col-sm-6 col-md-4">
+        <app-card [options]="{overrideDesign: true}">
+          <div
+            class="
+              contents
+              p-3
+              px-5
+              h-100
+              d-flex
+              flex-column
+              align-items-center
+              justify-content-center
+            "
+            style="background-color: #f6f6f6;"
+          >
+            <ng-container *ngIf="true">
+              <a
+                routerLink="/cards/create-card/87548765"
+                mat-stroked-button
+                color="primary"
+                class="w-100"
+                ><span class="d-block text-truncate">Continue</span></a
+              >
+              <span class="my-2">OR</span>
+            </ng-container>
+            <a
+              routerLink="/cards/create-card"
+              mat-flat-button
+              color="primary"
+              class="w-100"
+              ><span class="d-block text-truncate">Create new card</span></a
+            >
+          </div>
+        </app-card>
+      </div>
+      <ng-container *ngFor="let card of inactiveCards">
+        <div class="mb-3 col-12 col-sm-6 col-md-4">
+          <app-card [card]="card"></app-card>
+        </div>
+      </ng-container>
+    </div>
+  </section>
 </div>
