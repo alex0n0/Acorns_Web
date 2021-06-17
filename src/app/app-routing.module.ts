@@ -5,8 +5,8 @@ import { CardsScreenComponent } from './modules/cards-screen/cards-screen.compon
 import { CreateCardScreenComponent } from './modules/cards-screen/components/create-card-screen/create-card-screen.component';
 import { EditCardScreenComponent } from './modules/cards-screen/components/edit-card-screen/edit-card-screen.component';
 import { RewardProfilesScreenComponent } from './modules/reward-profiles-screen/reward-profiles-screen.component';
-import { CreateRewardProfileScreenComponent } from './modules/reward-profiles-screen/create-reward-profile-screen/create-reward-profile-screen.component';
-import { EditRewardProfileScreenComponent } from './modules/reward-profiles-screen/edit-reward-profile-screen/edit-reward-profile-screen.component';
+import { CreateRewardProfileScreenComponent } from './modules/reward-profiles-screen/components/create-reward-profile-screen/create-reward-profile-screen.component';
+import { EditRewardProfileScreenComponent } from './modules/reward-profiles-screen/components/edit-reward-profile-screen/edit-reward-profile-screen.component';
 import { SettingsScreenComponent } from './modules/settings-screen/settings-screen.component';
 import { StubScreenComponent } from './modules/stub-screen/stub-screen.component';
 import { SitemapScreenComponent } from './modules/sitemap-screen/sitemap-screen.component';

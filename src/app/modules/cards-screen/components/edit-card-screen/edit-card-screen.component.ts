@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MiscService } from 'src/app/core/services/http/misc.service';
 import { Breadcrumb } from 'src/app/shared/components/breadcrumbs/breadcrumbs.component';
@@ -8,9 +8,8 @@ import { Breadcrumb } from 'src/app/shared/components/breadcrumbs/breadcrumbs.co
   templateUrl: './edit-card-screen.component.html',
   styleUrls: ['./edit-card-screen.component.scss']
 })
-export class EditCardScreenComponent implements OnInit, OnDestroy {
+export class EditCardScreenComponent implements OnInit {
 
-  $card:Subscription | undefined;
   card:any | undefined;
 
   breadcrumbs:Breadcrumb[] = [
@@ -27,13 +26,8 @@ export class EditCardScreenComponent implements OnInit, OnDestroy {
   constructor(private miscService: MiscService) { }
 
   ngOnInit(): void {
-    this.$card = this.miscService.getCard("asdfasdf").subscribe(res => {
+    this.miscService.getCard("asdfasdf").subscribe(res => {
       this.card = res;
     });
   }
-
-  ngOnDestroy() {
-    this.$card?.unsubscribe();
-  }
-
 }

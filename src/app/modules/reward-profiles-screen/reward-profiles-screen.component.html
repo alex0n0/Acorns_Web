@@ -19,30 +19,7 @@
         <div class="row">
           <ng-container *ngFor="let rewardProfile of rewardProfiles">
             <div class="mb-4 col-12 col-lg-6">
-              <div class="bg-grey rounded">
-                <div
-                  class="p-4 py-3 border-bottom d-flex justify-content-between"
-                >
-                  <div>
-                    <h4 class="m-0">
-                      <b>{{ rewardProfile.Name }}</b>
-                    </h4>
-                    <p class="m-0 small text-muted">{{ rewardProfile.Id }}</p>
-                  </div>
-
-                  <a
-                    routerLink="/reward-profiles/edit-reward-profile/{{
-                      rewardProfile.Id
-                    }}"
-                    mat-mini-fab
-                    color="accent"
-                    class="shadow-none"
-                  >
-                    <mat-icon>edit</mat-icon>
-                  </a>
-                </div>
-                <div class="p-4">asdf</div>
-              </div>
+              <app-reward-profile [rewardProfile]="rewardProfile"></app-reward-profile>
             </div>
           </ng-container>
         </div>

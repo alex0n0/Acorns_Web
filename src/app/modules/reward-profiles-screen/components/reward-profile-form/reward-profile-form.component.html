@@ -1,0 +1,102 @@
+<form class="mt-5" (submit)="$event.preventDefault()">
+  <!-- <div class="row">
+    <div class="col-12 col-md-2">
+      <label class="ms-2 mb-2 mt-md-4 mb-md-0 ms-md-0 b-5"
+        >Card Nickname<span class="text-danger">*</span></label
+      >
+    </div>
+    <div class="col-12 col-md-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <input
+          matInput
+          placeholder="Enter a nickname for this card"
+          [value]="card ? (card.Nickname ? card.Nickname : '') : ''"
+        />
+        <mat-hint>
+          Name is used to help you identify cards. The customer will not see
+          this.
+        </mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="mt-5 row">
+    <div class="col-12 col-md-2">
+      <label class="ms-2 mb-2 mt-md-4 mb-md-0 ms-md-0 b-5">
+        Card Image<span class="text-danger">*</span>
+      </label>
+    </div>
+    <div class="col-12 col-md-6">
+      <div style="max-width: 400px">
+        <app-card [options]="{ overrideDesign: true }">
+          <div
+            class="card__contents rounded position-relative"
+            style="background-color: rgb(236, 236, 236)"
+          >
+            <div class="background border border-dashed rounded"></div>
+            <div class="body">
+              <mat-icon>file_download</mat-icon>
+              <span>Drop an image here</span>
+              <span>OR</span>
+              <button mat-flat-button color="primary" class="text-accent-l">
+                Choose a file
+              </button>
+            </div>
+          </div>
+        </app-card>
+      </div>
+    </div>
+  </div>
+  <div class="mt-5 row">
+    <div class="col-12 col-md-2">
+      <label class="ms-2 mb-2 mt-md-4 mb-md-0 ms-md-0 b-5">
+        Attach a reward profile<span class="text-danger">*</span>
+      </label>
+    </div>
+    <div class="mt-0 mt-md-1 col-12 col-md-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Choose a reward profile</mat-label>
+        <mat-select
+          id="RewardProfile"
+          [disabled]="!creditCardAdded || rewardProfiles.length === 0"
+        >
+          <ng-container *ngFor="let rewardProfile of rewardProfiles">
+            <mat-option [value]="rewardProfile.Id">{{
+              rewardProfile.Name
+            }}</mat-option>
+          </ng-container>
+        </mat-select>
+        <mat-hint *ngIf="!creditCardAdded">
+          <a routerLink="/settings/billing-details" class="text-accent"
+            >Add a credit card</a
+          >
+          to your account to enable reward profiles
+        </mat-hint>
+        <mat-hint *ngIf="creditCardAdded && rewardProfiles.length === 0">
+          No reward profiles exist.
+          <a
+            routerLink="/reward-profiles/create-reward-profile"
+            class="text-accent"
+            >Create one now</a
+          >.
+        </mat-hint>
+      </mat-form-field>
+    </div>
+  </div> -->
+  <div class="mt-100 row">
+    <div class="col-12 col-md-6 offset-md-2">
+      <button
+        mat-flat-button
+        color="primary"
+        class="me-3 text-accent-l"
+        (click)="submit()"
+      >
+        Save changes
+      </button>
+      <span class="cancel">
+        <button mat-flat-button color="primary" (click)="goBack()">
+          Cancel
+        </button>
+      </span>
+    </div>
+  </div>
+</form>

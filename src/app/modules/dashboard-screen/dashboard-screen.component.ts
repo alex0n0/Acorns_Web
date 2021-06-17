@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MiscService } from 'src/app/core/services/http/misc.service';
 import { Subscription } from 'rxjs';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
@@ -9,7 +9,7 @@ import { Label } from 'ng2-charts';
   templateUrl: './dashboard-screen.component.html',
   styleUrls: ['./dashboard-screen.component.scss']
 })
-export class DashboardScreenComponent implements OnInit, OnDestroy {
+export class DashboardScreenComponent implements OnInit {
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -23,16 +23,11 @@ export class DashboardScreenComponent implements OnInit, OnDestroy {
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
   ];
 
-  $users: Subscription | undefined;
-
   constructor(private miscService: MiscService) { }
 
   ngOnInit(): void {
-    this.$users = this.miscService.getUsers().subscribe(res => {
+    this.miscService.getUsers().subscribe(res => {
       console.log(res);
     });
-  }
-  ngOnDestroy() {
-    this.$users?.unsubscribe();
   }
 }

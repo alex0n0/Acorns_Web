@@ -1,0 +1,20 @@
+<div *ngIf="rewardProfile" class="bg-grey">
+  <div class="p-4 py-3 border-bottom d-flex justify-content-between">
+    <div>
+      <h4 class="m-0">
+        <b>{{ rewardProfile.Name }}</b>
+      </h4>
+      <p class="m-0 small text-muted">{{ rewardProfile.Id }}</p>
+    </div>
+
+    <a
+      routerLink="/reward-profiles/edit-reward-profile/{{ rewardProfile.Id }}"
+      mat-mini-fab
+      color="accent"
+      class="shadow-none"
+    >
+      <mat-icon>edit</mat-icon>
+    </a>
+  </div>
+  <div class="p-4">asdf</div>
+</div>

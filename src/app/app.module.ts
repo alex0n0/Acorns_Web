@@ -26,8 +26,8 @@ import { CardsScreenComponent } from './modules/cards-screen/cards-screen.compon
 import { CreateCardScreenComponent } from './modules/cards-screen/components/create-card-screen/create-card-screen.component';
 import { EditCardScreenComponent } from './modules/cards-screen/components/edit-card-screen/edit-card-screen.component';
 import { RewardProfilesScreenComponent } from './modules/reward-profiles-screen/reward-profiles-screen.component';
-import { CreateRewardProfileScreenComponent } from './modules/reward-profiles-screen/create-reward-profile-screen/create-reward-profile-screen.component';
-import { EditRewardProfileScreenComponent } from './modules/reward-profiles-screen/edit-reward-profile-screen/edit-reward-profile-screen.component';
+import { CreateRewardProfileScreenComponent } from './modules/reward-profiles-screen/components/create-reward-profile-screen/create-reward-profile-screen.component';
+import { EditRewardProfileScreenComponent } from './modules/reward-profiles-screen/components/edit-reward-profile-screen/edit-reward-profile-screen.component';
 import { SettingsScreenComponent } from './modules/settings-screen/settings-screen.component';
 import { SitemapScreenComponent } from './modules/sitemap-screen/sitemap-screen.component';
 import { StubScreenComponent } from './modules/stub-screen/stub-screen.component';
@@ -35,11 +35,13 @@ import { PageNotFoundScreenComponent } from './modules/page-not-found-screen/pag
 // components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/components/header/header.component';
-import { BreadcrumbsComponent } from './shared/components/breadcrumbs/breadcrumbs.component';
-import { CardComponent } from './shared/components/card/card.component';
-import { ContinueCardCreateAlertComponent } from './modules/cards-screen/components/continue-card-create-alert/continue-card-create-alert.component';
 import { SidenavComponent } from './shared/components/sidenav/sidenav.component';
+import { BreadcrumbsComponent } from './shared/components/breadcrumbs/breadcrumbs.component';
+import { ContinueCardCreateAlertComponent } from './modules/cards-screen/components/continue-card-create-alert/continue-card-create-alert.component';
+import { CardComponent } from './shared/components/card/card.component';
 import { CardDetailsFormComponent } from './modules/cards-screen/components/card-details-form/card-details-form.component';
+import { RewardProfileComponent } from './shared/components/reward-profile/reward-profile.component';
+import { RewardProfileFormComponent } from './modules/reward-profiles-screen/components/reward-profile-form/reward-profile-form.component';
 import { OrganisationSettingsComponent } from './modules/settings-screen/components/organisation-settings/organisation-settings.component';
 import { AccountSettingsComponent } from './modules/settings-screen/components/account-settings/account-settings.component';
 import { UserSettingsComponent } from './modules/settings-screen/components/user-settings/user-settings.component';
@@ -70,6 +72,8 @@ import { UserSettingsComponent } from './modules/settings-screen/components/user
     UserSettingsComponent,
     CreateRewardProfileScreenComponent,
     EditRewardProfileScreenComponent,
+    RewardProfileFormComponent,
+    RewardProfileComponent,
   ],
   imports: [
     BrowserModule,
