@@ -4,67 +4,91 @@
   </mat-drawer>
   <mat-drawer-content style="min-height: 100vh">
     <app-header (drawerToggled)="drawer.toggle()"></app-header>
-    <div class="pt-100 pb-200 px-md-5 container-md">
-      <app-continue-card-create-alert></app-continue-card-create-alert>
+    <div class="pt-200 pb-100 px-0 px-md-3 container-md">
+      <!-- <app-continue-card-create-alert></app-continue-card-create-alert> -->
 
-      <!-- <app-breadcrumbs [breadcrumbs]="breadcrumbs" ></app-breadcrumbs> -->
+      <div class="p-5 page__background">
+        <!-- <app-breadcrumbs [breadcrumbs]="breadcrumbs" ></app-breadcrumbs> -->
+        <h1>Cards</h1>
 
-      <h1>Cards</h1>
-
-      <section class="mt-5">
-        <h2>Active Cards&nbsp;<span class="b-4 text-muted">({{activeCards.length}}/1)</span></h2>
-        <div class="gx-lg-5 row">
-          <div
-            *ngIf="activeCards.length === 0"
-            class="mb-3 px-lg-4 col-12 col-sm-6 col-md-4"
-          >
-            <app-card [options]="{ overrideDesign: true }">
-              <div class="p-3 px-5 card__contents border border-dashed rounded text-center">
-                <span>Set one of the cards below as the<br/><b>active card</b></span>
-              </div>
-            </app-card>
-          </div>
-          <ng-container *ngFor="let card of activeCards">
-            <div class="mb-3 px-lg-4 col-12 col-sm-6 col-md-4">
-              <app-card [card]="card"></app-card>
-            </div>
-          </ng-container>
-        </div>
-      </section>
-
-      <section class="mt-5">
-        <h2>Inactive Cards</h2>
-        <div class="gx-lg-5 row">
-          <div class="mb-5 col-12 px-lg-4 col-sm-6 col-md-4">
-            <app-card [options]="{ overrideDesign: true }">
-              <div class="p-3 px-5 card__contents border rounded bg-white">
-                <ng-container *ngIf="true">
-                  <a
-                    routerLink="/cards/create-card/87548765"
-                    mat-stroked-button
-                    color="primary"
-                    class="w-100"
-                    ><span class="d-block text-truncate">Continue</span></a
-                  >
-                  <span class="my-2">OR</span>
-                </ng-container>
-                <a
-                  routerLink="/cards/create-card"
-                  mat-flat-button
-                  color="primary"
-                  class="w-100 text-accent-l"
-                  ><span class="d-block text-truncate">Create new card</span></a
+        <section class="mt-5">
+          <h2>
+            Active Cards&nbsp;<span class="b-4 text-muted"
+              >({{ activeCards.length }}/1)</span
+            >
+          </h2>
+          <div class="gx-lg-5 row">
+            <div
+              *ngIf="activeCards.length === 0"
+              class="mb-3 px-lg-4 col-12 col-sm-6 col-md-4"
+            >
+              <app-card [options]="{ overrideDesign: true }">
+                <div
+                  class="
+                    p-3
+                    px-5
+                    card__contents
+                    border border-dashed
+                    rounded
+                    text-center
+                    bg-grey
+                  "
                 >
-              </div>
-            </app-card>
-          </div>
-          <ng-container *ngFor="let card of inactiveCards">
-            <div class="mb-5 px-lg-4 col-12 col-sm-6 col-md-4">
-              <app-card [card]="card" [activeCardExists]="activeCardExists"></app-card>
+                  <span
+                    >Set one of the cards below as the<br /><b
+                      >active card</b
+                    ></span
+                  >
+                </div>
+              </app-card>
             </div>
-          </ng-container>
-        </div>
-      </section>
+            <ng-container *ngFor="let card of activeCards">
+              <div class="mb-3 px-lg-4 col-12 col-sm-6 col-md-4">
+                <app-card [card]="card"></app-card>
+              </div>
+            </ng-container>
+          </div>
+        </section>
+
+        <section class="mt-5">
+          <h2>Inactive Cards</h2>
+          <div class="gx-lg-5 row">
+            <div class="mb-5 col-12 px-lg-4 col-sm-6 col-md-4">
+              <app-card [options]="{ overrideDesign: true }">
+                <div class="p-3 px-5 card__contents rounded bg-grey">
+                  <ng-container *ngIf="false">
+                    <a
+                      routerLink="/cards/create-card/87548765"
+                      mat-stroked-button
+                      color="primary"
+                      class="w-100"
+                      ><span class="d-block text-truncate">Continue</span></a
+                    >
+                    <span class="my-2">OR</span>
+                  </ng-container>
+                  <a
+                    routerLink="/cards/create-card"
+                    mat-flat-button
+                    color="primary"
+                    class="w-100 text-accent-l"
+                    ><span class="d-block text-truncate"
+                      >Create new card</span
+                    ></a
+                  >
+                </div>
+              </app-card>
+            </div>
+            <ng-container *ngFor="let card of inactiveCards">
+              <div class="mb-5 px-lg-4 col-12 col-sm-6 col-md-4">
+                <app-card
+                  [card]="card"
+                  [activeCardExists]="activeCardExists"
+                ></app-card>
+              </div>
+            </ng-container>
+          </div>
+        </section>
+      </div>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>

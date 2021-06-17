@@ -4,26 +4,34 @@ import { Observable, of } from 'rxjs';
 import { v4 as uuid } from 'uuid';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MiscService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
+  getUsers = (): Observable<any> => {
+    return this.httpClient.get('https://jsonplaceholder.typicode.com/posts');
+  };
 
-  getUsers = ():Observable<any> => {
-    return this.httpClient.get("https://jsonplaceholder.typicode.com/posts");
+  getAccountCredentials = (): Observable<any> => {
+    return of({
+      CreditCardAdded: false,
+      // CreditCardAdded: true,
+    });
   }
 
-  getCards = ():Observable<any> => {
+  getCards = (): Observable<any> => {
     return of({
       active: [
-        // {
-        //   Id: uuid(),
-        //   IsActive: true,
-        //   Nickname: 'First Card',
-        //   RewardProfile: null,
-        //   CreatedDate: new Date(),
-        // }
+        {
+          Id: uuid(),
+          IsActive: true,
+          Nickname: 'First Card',
+          RewardProfile: null,
+          CreatedDate: new Date(),
+          CardImage:
+            'https://i.colnect.net/f/3379/433/Hoyts-Rewards-Black.jpg',
+        },
       ],
       inactive: [
         {
@@ -32,7 +40,7 @@ export class MiscService {
           Nickname: 'Test card',
           RewardProfile: {
             Name: 'test profile',
-            Id: uuid()
+            Id: uuid(),
           },
           CreatedDate: new Date(),
         },
@@ -42,7 +50,7 @@ export class MiscService {
           Nickname: 'dummy design',
           RewardProfile: {
             Name: 'VIP rewards',
-            Id: uuid()
+            Id: uuid(),
           },
           CreatedDate: new Date(),
         },
@@ -52,7 +60,7 @@ export class MiscService {
           Nickname: '2019 Card',
           RewardProfile: {
             Name: 'free points',
-            Id: uuid()
+            Id: uuid(),
           },
           CreatedDate: new Date(),
         },
@@ -62,11 +70,47 @@ export class MiscService {
           Nickname: 'Old',
           RewardProfile: {
             Name: 'free muffins',
-            Id: uuid()
+            Id: uuid(),
           },
           CreatedDate: new Date(),
         },
-      ]
+      ],
     });
-  }
+  };
+
+  getContinueEditingCard = (id: string) => {};
+
+  getCard = (id: string) => {
+    return of({
+      Id: uuid(),
+      IsActive: true,
+      Nickname: 'First Card',
+      RewardProfile: null,
+      CreatedDate: new Date(),
+      BackgroundImage:
+        'https://i.colnect.net/f/3379/433/Hoyts-Rewards-Black.jpg',
+    });
+  };
+
+  getRewardProfiles = () => {
+    // return of([]);
+    return of([
+      {
+        Name: 'free muffins',
+        Id: uuid(),
+      },
+      {
+        Name: 'free points',
+        Id: uuid(),
+      },
+      {
+        Name: 'VIP rewards',
+        Id: uuid(),
+      },
+      {
+        Name: 'test profile',
+        Id: uuid(),
+      },
+    ]);
+  };
 }

@@ -1,5 +1,35 @@
+@import "../utils/mixins";
+
+.mt-100 {
+  margin-top: 100px;
+}
+
+.pt-90 {
+  padding-top: 90px;
+}
+
 .pt-100 {
   padding-top: 100px;
+}
+
+.pt-200 {
+  padding-top: 200px;
+}
+
+.pt-md-200 {
+  @include break-md-min {
+    padding-top: 200px !important;
+  }
+}
+
+.pb-100 {
+  padding-bottom: 100px !important;
+}
+
+.pb-md-100 {
+  @include break-md-min {
+    padding-bottom: 100px !important;
+  }
 }
 
 .pb-200 {

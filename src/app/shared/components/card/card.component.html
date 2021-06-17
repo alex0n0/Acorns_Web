@@ -8,6 +8,8 @@
 
     <ng-container *ngIf="!options.overrideDesign && card">
       <div class="card__contents rounded">
+        <img *ngIf="!card.CardImage" class="card__image rounded" src="../../../../assets/images/default-card.png" alt="">
+        <img *ngIf="card.CardImage" class="card__image rounded" [src]="card.CardImage" alt="">
         <div class="card__body p-3">
           <button
             mat-icon-button
@@ -35,7 +37,7 @@
         </div>
         <div class="card__qrcode">
           <div class="spacer"></div>
-          <div class="body bg-white p-1">
+          <div class="body bg-white rounded overflow-hidden">
             <qrcode
               [qrdata]="card.Id"
               [width]="100"

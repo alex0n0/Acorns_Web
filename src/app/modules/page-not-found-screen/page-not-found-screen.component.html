@@ -4,13 +4,15 @@
   </mat-drawer>
   <mat-drawer-content style="min-height: 100vh">
     <app-header (drawerToggled)="drawer.toggle()"></app-header>
-    <div class="pt-100 pb-200 px-md-5 container-md">
-      <h1 class="text-center">The page you are looking for does not exist</h1>
-      <p class="text-center">
-        <a routerLink="/" class="text-accent u-0 hover-u b-5"
-          >Return home instead</a
-        >
-      </p>
+    <div class="pt-200 pb-100 px-0 px-md-3 container-md">
+      <div class="p-5 page__background">
+        <h1 class="text-center">The page you are looking for does not exist</h1>
+        <p class="text-center">
+          <a routerLink="/" class="text-accent u-0 hover-u b-5"
+            >Return home instead</a
+          >
+        </p>
+      </div>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>

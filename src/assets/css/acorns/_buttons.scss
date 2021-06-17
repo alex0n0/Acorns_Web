@@ -1,0 +1,16 @@
+@import "~@angular/material/theming";
+
+.cancel {
+  $cancel-button-primary: mat-palette($mat-grey, 400);
+  $cancel-button-accent: mat-palette($mat-pink, 500, A200, A100, A400);
+  $cancel-button-theme: mat-light-theme(
+    (
+      color: (
+        primary: $cancel-button-primary,
+        accent: $cancel-button-accent,
+      ),
+    )
+  );
+
+  @include mat-button-theme($cancel-button-theme);
+}

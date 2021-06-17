@@ -11,13 +11,16 @@
     width: 100%;
     .card__contents {
       height: 100%;
-      background-color: rgb(73, 73, 73);
-      background-image: url("../../../../assets/images/Acorns_grey.png");
-      background-size: 40%;
-      background-repeat: no-repeat;
-      background-position: center;
       color: white;
+      text-shadow: auto;
 
+      .card__image {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        height: 100%;
+        width: 100%;
+      }
       .card__body {
         .card__options-button {
           position: absolute;
@@ -30,7 +33,7 @@
         position: absolute;
         bottom: 0.5rem;
         right: 0.5rem;
-        width: 25%;
+        width: 15%;
         .spacer {
           width: 100%;
           padding-top: 100%;

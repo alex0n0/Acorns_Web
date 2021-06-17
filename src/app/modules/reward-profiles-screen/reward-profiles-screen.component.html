@@ -4,8 +4,49 @@
   </mat-drawer>
   <mat-drawer-content style="min-height: 100vh">
     <app-header (drawerToggled)="drawer.toggle()"></app-header>
-    <div class="pt-100 pb-200 px-md-5 container-md">
-      <h1>Reward Profiles</h1>
+    <div class="pt-200 pb-100 px-0 px-md-3 container-md">
+      <div class="p-5 bg-white">
+        <h1 class="mb-5">Reward Profiles</h1>
+        <div class="mb-4 d-flex justify-content-between">
+          <a
+            routerLink="/reward-profiles/create-reward-profile"
+            mat-flat-button
+            color="primary"
+            class="text-accent-l"
+            ><span class="d-block text-truncate">Create reward profile</span></a
+          >
+        </div>
+        <div class="row">
+          <ng-container *ngFor="let rewardProfile of rewardProfiles">
+            <div class="mb-4 col-12 col-lg-6">
+              <div class="bg-grey rounded">
+                <div
+                  class="p-4 py-3 border-bottom d-flex justify-content-between"
+                >
+                  <div>
+                    <h4 class="m-0">
+                      <b>{{ rewardProfile.Name }}</b>
+                    </h4>
+                    <p class="m-0 small text-muted">{{ rewardProfile.Id }}</p>
+                  </div>
+
+                  <a
+                    routerLink="/reward-profiles/edit-reward-profile/{{
+                      rewardProfile.Id
+                    }}"
+                    mat-mini-fab
+                    color="accent"
+                    class="shadow-none"
+                  >
+                    <mat-icon>edit</mat-icon>
+                  </a>
+                </div>
+                <div class="p-4">asdf</div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>

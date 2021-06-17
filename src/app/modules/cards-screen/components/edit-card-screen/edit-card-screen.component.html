@@ -6,19 +6,9 @@
     <app-header (drawerToggled)="drawer.toggle()"></app-header>
     <div class="pt-200 pb-100 px-0 px-md-3 container-md">
       <div class="p-5 page__background">
-        <h1 class="text-center">Welcome</h1>
-        <div style="display: block">
-          <canvas
-            baseChart
-            [datasets]="barChartData"
-            [labels]="barChartLabels"
-            [options]="barChartOptions"
-            [plugins]="barChartPlugins"
-            [legend]="barChartLegend"
-            [chartType]="barChartType"
-          >
-          </canvas>
-        </div>
+        <app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
+        <h1>Edit Card</h1>
+        <app-card-details-form [card]="card"></app-card-details-form>
       </div>
     </div>
   </mat-drawer-content>

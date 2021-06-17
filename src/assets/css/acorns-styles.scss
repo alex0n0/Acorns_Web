@@ -36,9 +36,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   --app-accent-d: #{$app-accent-d};
 }
 
+@import "./acorns/angular_material_override";
 @import "./acorns/alerts";
 @import "./acorns/borders";
-@import "./acorns/dropdowns";
+@import "./acorns/buttons";
+@import "./acorns/colors";
 @import "./acorns/links";
 @import "./acorns/qrcode";
 @import "./acorns/text";

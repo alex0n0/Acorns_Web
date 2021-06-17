@@ -1,0 +1,51 @@
+<mat-drawer-container [hasBackdrop]="true">
+  <mat-drawer #drawer [mode]="'over'">
+    <app-sidenav></app-sidenav>
+  </mat-drawer>
+  <mat-drawer-content style="min-height: 100vh">
+    <app-header (drawerToggled)="drawer.toggle()"></app-header>
+    <div class="pt-200 pb-100 px-0 px-md-3 container-md">
+      <div class="p-5 page__background">
+        <h1>Sitemap</h1>
+        <div class="row">
+          <div class="col-4">
+            <h2 class="mb-3">Account</h2>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a
+                  href="/settings/update-password"
+                  class="u-0 text-accent hover-u"
+                  >Change password</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="/settings/business-details"
+                  class="u-0 text-accent hover-u"
+                  >Update address</a
+                >
+              </li>
+              <li>
+                <a href="/add-user" class="u-0 text-accent hover-u"
+                  >Create user</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-4">
+            <h2 class="mb-3">Billing</h2>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a
+                  href="/settings/billing-details"
+                  class="u-0 text-accent hover-u"
+                  >Update billing details</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
