@@ -14,3 +14,9 @@
 
   @include mat-button-theme($cancel-button-theme);
 }
+
+.button--primary {
+  &:disabled, &.text-accent-l:disabled {
+    color: rgba(0, 0, 0, 0.26) !important;
+  }
+}

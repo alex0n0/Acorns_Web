@@ -1,33 +1,65 @@
 import { Component, OnInit } from '@angular/core';
-import { MiscService } from 'src/app/core/services/http/misc.service';
+import { HttpService } from 'src/app/core/services/http/http.service';
 import { Subscription } from 'rxjs';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { Color, Label } from 'ng2-charts';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard-screen.component.html',
-  styleUrls: ['./dashboard-screen.component.scss']
+  styleUrls: ['./dashboard-screen.component.scss'],
 })
 export class DashboardScreenComponent implements OnInit {
-
-  public barChartOptions: ChartOptions = {
+  // public lineChartData: ChartDataSets[] = [
+  //   { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+  // ];
+  // public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartData: ChartDataSets[] = [];
+  public lineChartLabels: Label[] = [];
+  public lineChartOptions: ChartOptions = {
     responsive: true,
+    legend: {
+      display: false
+    },
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            suggestedMin: 0,
+            suggestedMax: 10,
+          },
+        },
+      ]
+    }
   };
-  public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-  public barChartType: ChartType = 'bar';
-  public barChartLegend = true;
-  public barChartPlugins = [];
-  public barChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
-  ];
+  // public lineChartColors: Color[] = [
+  //   { borderColor: 'black', backgroundColor: 'rgba(255,0,0,0.3)' },
+  // ];
+  public lineChartColors: Color[] = [];
+  public lineChartLegend = true;
+  public lineChartType:ChartType = 'line';
+  public lineChartPlugins = [];
 
-  constructor(private miscService: MiscService) { }
+  constructor(private httpService: HttpService) {}
 
   ngOnInit(): void {
-    this.miscService.getUsers().subscribe(res => {
+    this.httpService.getCustomerUserAccounts().subscribe((res) => {
       console.log(res);
+    });
+    this.httpService.getCustomerTransactions().subscribe((res) => {
+      console.log(res);
+
+      this.lineChartData.push({
+        label: "transactions",
+        data: res.map(transaction => transaction.Transactions.length),
+        fill: true,
+        cubicInterpolationMode: "monotone",
+        lineTension: 0,
+        borderWidth: 1,
+        pointRadius: 0,
+      });
+      this.lineChartLabels = res.map(transaction => transaction.DateTime.getFullYear() + '/' + transaction.DateTime.getMonth() + 1 + '/' + transaction.DateTime.getDate());
+      this.lineChartColors.push({ borderColor: 'black', backgroundColor: 'rgba(0,0,0,0.3)' });
     });
   }
 }

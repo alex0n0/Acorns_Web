@@ -21,7 +21,7 @@
               *ngIf="activeCards.length === 0"
               class="mb-3 px-lg-4 col-12 col-sm-6 col-md-4"
             >
-              <app-card [options]="{ overrideDesign: true }">
+              <app-card [options]="{ overrideContent: true }">
                 <div
                   class="
                     p-3
@@ -53,7 +53,7 @@
           <h2>Inactive Cards</h2>
           <div class="gx-lg-5 row">
             <div class="mb-5 col-12 px-lg-4 col-sm-6 col-md-4">
-              <app-card [options]="{ overrideDesign: true }">
+              <app-card [options]="{ overrideContent: true }">
                 <div class="p-3 px-5 card__contents rounded bg-grey">
                   <ng-container *ngIf="false">
                     <a
@@ -82,6 +82,8 @@
                 <app-card
                   [card]="card"
                   [activeCardExists]="activeCardExists"
+                  (swapActiveBusinessCard)="handleSwapActiveBusinessCard($event)"
+                  (deleteBusinessCard)="handleDeleteBusinessCard($event)"
                 ></app-card>
               </div>
             </ng-container>

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { MiscService } from 'src/app/core/services/http/misc.service';
+import { HttpService } from 'src/app/core/services/http/http.service';
 
 @Component({
   selector: 'app-reward-profile-form',
@@ -9,9 +9,20 @@ import { MiscService } from 'src/app/core/services/http/misc.service';
 })
 export class RewardProfileFormComponent implements OnInit {
 
-  constructor(private miscService: MiscService, private location: Location) { }
+  @Input() options = {
+    createNewProfile: false
+  };
+
+  rewardProfileConfigId = undefined;
+  rewardProfileConfigs:any[] = [];
+
+  constructor(private httpService: HttpService, private location: Location) { }
 
   ngOnInit(): void {
+    this.httpService.getRewardProfileConfigs().subscribe(res => {
+      this.rewardProfileConfigs = res;
+      this.rewardProfileConfigId = this.rewardProfileConfigs[0].Id;
+    });
   }
 
   goBack():void {

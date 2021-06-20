@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MiscService } from 'src/app/core/services/http/misc.service';
+import { HttpService } from 'src/app/core/services/http/http.service';
+import { AuthService } from 'src/app/core/services/http/auth.service';
 
 @Component({
   selector: 'app-reward-profiles',
@@ -8,13 +9,28 @@ import { MiscService } from 'src/app/core/services/http/misc.service';
 })
 export class RewardProfilesScreenComponent implements OnInit {
 
-  rewardProfiles:any[] = [];
+  creditCardAdded: boolean = false;
 
-  constructor(private miscService: MiscService) { }
+  rewardProfiles:any[] = [];
+  
+  constructor(private httpService: HttpService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.miscService.getRewardProfiles().subscribe(res => {
-      this.rewardProfiles = res;
+    this.authService.getOrgDetails().subscribe(res => {
+      this.creditCardAdded = res.CreditCardAdded;
+      this.httpService.getRewardProfiles().subscribe(res => {
+        this.rewardProfiles = res;
+      });
+    });
+
+    this.authService.getOrgDetails().subscribe((res) => {
+      this.creditCardAdded = res.CreditCardAdded;
+
+      if (this.creditCardAdded) {
+        this.httpService.getRewardProfiles().subscribe((res) => {
+          this.rewardProfiles = res;
+        });
+      }
     });
   }
 }

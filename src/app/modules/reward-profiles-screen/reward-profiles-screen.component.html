@@ -7,19 +7,39 @@
     <div class="pt-90 pt-md-200 pb-100 px-0 px-md-3 container-md">
       <div class="p-5 px-3 px-md-5 bg-white">
         <h1 class="mb-5">Reward Profiles</h1>
-        <div class="mb-4 d-flex justify-content-between">
-          <a
-            routerLink="/reward-profiles/create-reward-profile"
-            mat-flat-button
-            color="primary"
-            class="text-accent-l"
-            ><span class="d-block text-truncate">Create reward profile</span></a
-          >
+        <div class="mb-4 d-flex flex-wrap align-items-center">
+          <ng-container *ngIf="creditCardAdded">
+            <a
+              routerLink="/reward-profiles/create-reward-profile"
+              mat-flat-button
+              color="primary"
+              class="my-2 me-3 text-accent-l"
+              ><span class="d-block text-truncate"
+                >Create reward profile</span
+              ></a
+            >
+          </ng-container>
+          <ng-container *ngIf="!creditCardAdded">
+            <button
+              *ngIf="true"
+              mat-flat-button
+              color="primary"
+              class="my-2 me-3 text-accent-l button--primary"
+              disabled
+            >
+              <span class="d-block text-truncate">Create reward profile</span>
+            </button>
+            <span class="text-muted"
+              >A Premium account is required to create a reward profile</span
+            >
+          </ng-container>
         </div>
-        <div class="row">
+        <div *ngIf="creditCardAdded" class="row">
           <ng-container *ngFor="let rewardProfile of rewardProfiles">
             <div class="mb-4 col-12 col-lg-6">
-              <app-reward-profile [rewardProfile]="rewardProfile"></app-reward-profile>
+              <app-reward-profile
+                [rewardProfile]="rewardProfile"
+              ></app-reward-profile>
             </div>
           </ng-container>
         </div>

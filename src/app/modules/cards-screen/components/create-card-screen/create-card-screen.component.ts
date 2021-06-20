@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MiscService } from 'src/app/core/services/http/misc.service';
+import { HttpService } from 'src/app/core/services/http/http.service';
 import { Breadcrumb } from 'src/app/shared/components/breadcrumbs/breadcrumbs.component';
 
 @Component({
@@ -20,7 +20,7 @@ export class CreateCardScreenComponent implements OnInit {
     }
   ];
   
-  constructor(private miscService:MiscService) { }
+  constructor(private miscService:HttpService) { }
 
   ngOnInit(): void {
 

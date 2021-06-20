@@ -2,15 +2,16 @@
   <div class="row">
     <div class="col-12 col-md-2">
       <label class="ms-2 mb-2 mt-md-4 mb-md-0 ms-md-0 b-5"
-        >Card Nickname<span class="text-danger">*</span></label
+        >Card Name<span class="text-danger">*</span></label
       >
     </div>
     <div class="col-12 col-md-6">
       <mat-form-field appearance="outline" class="w-100">
         <input
           matInput
-          placeholder="Enter a nickname for this card"
-          [value]="card ? (card.Nickname ? card.Nickname : '') : ''"
+          placeholder="Enter a name for this card"
+          name="name"
+          [(ngModel)]="cardName"
         />
         <mat-hint>
           Name is used to help you identify cards. The customer will not see
@@ -27,7 +28,7 @@
     </div>
     <div class="col-12 col-md-6">
       <div style="max-width: 400px">
-        <app-card [options]="{ overrideDesign: true }">
+        <app-card [options]="{ overrideContent: true }">
           <div
             class="card__contents rounded position-relative"
             style="background-color: rgb(236, 236, 236)"
@@ -37,7 +38,12 @@
               <mat-icon>file_download</mat-icon>
               <span>Drop an image here</span>
               <span>OR</span>
-              <button mat-flat-button color="primary" class="text-accent-l">
+              <button
+                mat-flat-button
+                color="primary"
+                class="text-accent-l"
+                (click)="addImage()"
+              >
                 Choose a file
               </button>
               <!-- <input type="file" > -->
@@ -50,7 +56,7 @@
   <div class="mt-5 row">
     <div class="col-12 col-md-2">
       <label class="ms-2 mb-2 mt-md-4 mb-md-0 ms-md-0 b-5">
-        Attach a reward profile<span class="text-danger">*</span>
+        Attach a reward profile
       </label>
     </div>
     <div class="mt-0 mt-md-1 col-12 col-md-6">
@@ -59,6 +65,7 @@
         <mat-select
           id="RewardProfile"
           [disabled]="!creditCardAdded || rewardProfiles.length === 0"
+          [(value)]="cardRewardProfileId"
         >
           <ng-container *ngFor="let rewardProfile of rewardProfiles">
             <mat-option [value]="rewardProfile.Id">{{
@@ -84,20 +91,51 @@
     </div>
   </div>
   <div class="mt-100 row">
-    <div class="col-12 col-md-6 offset-md-2">
+    <div *ngIf="!formState.success" class="col-12 col-md-6 offset-md-2 d-flex align-items-center">
+      <span>
+        <button
+          *ngIf="!formState.submitting"
+          mat-flat-button
+          color="primary"
+          class="me-3 text-accent-l"
+          (click)="submit()"
+          [disabled]="formState.submitting"
+        >
+          Save changes
+        </button>
+        <button
+          *ngIf="formState.submitting"
+          mat-flat-button
+          color="primary"
+          class="me-3 button--primary"
+          (click)="submit()"
+          disabled
+        >
+          Save changes
+        </button>
+      </span>
+      <span class="cancel me-3">
+        <button
+          mat-flat-button
+          color="primary"
+          (click)="goBack()"
+          [disabled]="formState.submitting"
+        >
+          Cancel
+        </button>
+      </span>
+      <mat-spinner *ngIf="formState.submitting" color="accent" diameter="35"></mat-spinner>
+    </div>
+    <div *ngIf="formState.success" class="col-12 col-md-6 offset-md-2">
       <button
         mat-flat-button
         color="primary"
         class="me-3 text-accent-l"
-        (click)="submit()"
+        (click)="done()"
+        [disabled]="formState.submitting"
       >
-        Save changes
+        Done
       </button>
-      <span class="cancel">
-        <button mat-flat-button color="primary" (click)="goBack()">
-          Cancel
-        </button>
-      </span>
     </div>
   </div>
 </form>

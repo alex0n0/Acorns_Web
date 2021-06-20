@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -8,15 +8,24 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CardComponent implements OnInit {
 
   @Input() options = {
-    overrideDesign: false
+    overrideContent: false
   }
 
   @Input() card:any;
   @Input() activeCardExists:boolean = false;
+
+  @Output() swapActiveBusinessCard = new EventEmitter<string>();
+  @Output() deleteBusinessCard = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  handleSwapActiveBusinessCard = (id:string) => {
+    this.swapActiveBusinessCard.emit(id);
+  }
+  handleDeleteBusinessCard = (id:string) => {
+    this.deleteBusinessCard.emit(id);
+  }
 }

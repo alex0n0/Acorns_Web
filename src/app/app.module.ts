@@ -19,6 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // pages
 import { DashboardScreenComponent } from './modules/dashboard-screen/dashboard-screen.component';
@@ -95,6 +96,7 @@ import { UserSettingsComponent } from './modules/settings-screen/components/user
     MatInputModule,
     MatSelectModule,
     MatIconModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent],

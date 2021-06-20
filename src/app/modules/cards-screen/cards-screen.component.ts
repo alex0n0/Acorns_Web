@@ -1,23 +1,47 @@
 import { Component, OnInit } from '@angular/core';
-import { MiscService } from 'src/app/core/services/http/misc.service';
+import { Card } from 'src/app/core/services/data/repository.service';
+import { HttpService } from 'src/app/core/services/http/http.service';
 
 @Component({
   selector: 'app-cards-screen',
   templateUrl: './cards-screen.component.html',
-  styleUrls: ['./cards-screen.component.scss']
+  styleUrls: ['./cards-screen.component.scss'],
 })
 export class CardsScreenComponent implements OnInit {
-  activeCards:any[] = [];
-  inactiveCards:any[] = [];
-  activeCardExists:boolean = false;
+  activeCards: Card[] = [];
+  inactiveCards: Card[] = [];
+  activeCardExists: boolean = false;
 
-  constructor(private miscService: MiscService) { }
+  constructor(private httpService: HttpService) {}
 
   ngOnInit(): void {
-    this.miscService.getCards().subscribe(res => {
-      this.activeCards = res.active;
-      this.inactiveCards = res.inactive;
-      this.activeCardExists = res.active.length > 0 ? true : false;
-    });
+    this.getBusinessCards();
   }
+
+  getBusinessCards = () => {
+    this.httpService.getBusinessCards().subscribe((res) => {
+      this.processActiveInactiveCards(res);
+    });
+  };
+
+  processActiveInactiveCards = (businessCards: {
+    ActiveCards: Card[];
+    InactiveCards: Card[];
+  }) => {
+    this.activeCards = businessCards.ActiveCards;
+    this.inactiveCards = businessCards.InactiveCards;
+    this.activeCardExists = businessCards.ActiveCards.length > 0 ? true : false;
+  };
+
+  handleDeleteBusinessCard = (id: string) => {
+    this.httpService.deleteBusinessCard(id).subscribe((res) => {
+      this.getBusinessCards();
+    });
+  };
+
+  handleSwapActiveBusinessCard = (id: string) => {
+    this.httpService.swapActiveBusinessCard(id).subscribe((res) => {
+      this.getBusinessCards();
+    });
+  };
 }

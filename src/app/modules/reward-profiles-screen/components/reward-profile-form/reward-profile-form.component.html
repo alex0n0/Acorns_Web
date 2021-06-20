@@ -82,6 +82,77 @@
       </mat-form-field>
     </div>
   </div> -->
+  <div class="row">
+    <div class="col-12 col-md-2">
+      <label class="ms-2 mb-2 mt-md-4 mb-md-0 ms-md-0 b-5"
+        >Reward Profile Name<span class="text-danger">*</span></label
+      >
+    </div>
+    <div class="col-12 col-md-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <!-- <input
+          matInput
+          placeholder="Enter a nickname for this card"
+          [value]="card ? (card.Nickname ? card.Nickname : '') : ''"
+        /> -->
+        <input matInput placeholder="Enter a name for this reward profile" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="mt-5 row">
+    <div class="col-12 col-md-2">
+      <label class="ms-2 mb-2 mt-md-4 mb-md-0 ms-md-0 b-5">
+        Choose a reward configuration<span class="text-danger">*</span>
+      </label>
+    </div>
+    <div class="mt-0 mt-md-1 col-12 col-md-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Select config</mat-label>
+        <!-- <mat-select
+          id="RewardProfile"
+          [disabled]="!creditCardAdded || rewardProfiles.length === 0"
+        > -->
+        <mat-select id="RewardProfile" [(value)]="rewardProfileConfigId">
+          <ng-container
+            *ngFor="let rewardProfileConfig of rewardProfileConfigs"
+          >
+            <mat-option
+              [value]="rewardProfileConfig.Id"
+              [disabled]="rewardProfileConfig.IsPremium"
+              >{{ rewardProfileConfig.Title | titlecase}}
+              {{ rewardProfileConfig.IsPremium ? '(Premium)' : null}}</mat-option
+            >
+          </ng-container>
+        </mat-select>
+        <!-- <mat-hint>
+          No reward profiles exist.
+        </mat-hint> -->
+      </mat-form-field>
+      <!-- <ng-container *ngSwitch -->
+    </div>
+  </div>
+  <div class="mt-5 row scheme__configs">
+    <div class="col-12 col-md-6 offset-md-2">
+      <ng-container *ngSwitch=""></ng-container>
+      <div class="d-flex flex-wrap align-items-center">
+        <span>Spend</span>
+        <mat-form-field appearance="outline" class="m-0" [style.width.px]="100">
+          <mat-icon matPrefix>attach_money</mat-icon>
+          <input matInput placeholder="5" type="number" />
+        </mat-form-field>
+        <span>to earn</span>
+        <mat-form-field
+          appearance="outline"
+          class="m-0 p-0 short"
+          [style.width.px]="100"
+        >
+          <input matInput placeholder="1" type="number" />
+        </mat-form-field>
+        <span>points</span>
+      </div>
+      <div></div>
+    </div>
+  </div>
   <div class="mt-100 row">
     <div class="col-12 col-md-6 offset-md-2">
       <button

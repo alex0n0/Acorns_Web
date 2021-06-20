@@ -2,11 +2,11 @@
   <div class="spacer"></div>
   <div class="body">
     <ng-content
-      *ngIf="options.overrideDesign"
+      *ngIf="options.overrideContent"
       select=".card__contents"
     ></ng-content>
 
-    <ng-container *ngIf="!options.overrideDesign && card">
+    <ng-container *ngIf="!options.overrideContent && card">
       <div class="card__contents rounded">
         <img *ngIf="!card.CardImage" class="card__image rounded" src="../../../../assets/images/default-card.png" alt="">
         <img *ngIf="card.CardImage" class="card__image rounded" [src]="card.CardImage" alt="">
@@ -20,7 +20,7 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #cardOptions="matMenu" xPosition="before">
-            <button *ngIf="!card.IsActive" mat-menu-item>
+            <button *ngIf="!card.IsActive" mat-menu-item (click)="handleSwapActiveBusinessCard(card.Id)">
               {{
                 activeCardExists
                   ? "Swap with active card"
@@ -30,7 +30,7 @@
             <a mat-menu-item routerLink="/cards/edit-card/{{ card.Id }}"
               >Edit</a
             >
-            <button *ngIf="!card.IsActive" mat-menu-item class="text-danger">
+            <button *ngIf="!card.IsActive" mat-menu-item class="text-danger" (click)="handleDeleteBusinessCard(card.Id)">
               Delete
             </button>
           </mat-menu>
@@ -50,13 +50,13 @@
   </div>
 </div>
 
-<ng-container *ngIf="!options.overrideDesign && card">
+<ng-container *ngIf="!options.overrideContent && card">
   <div class="w-100 text-nowrap pt-2 px-2">
     <table>
       <tbody>
         <tr>
           <th>Card Name</th>
-          <td class="ps-3 text-truncate w-100">{{ card.Nickname }}</td>
+          <td class="ps-3 text-truncate w-100">{{ card.Name }}</td>
         </tr>
         <tr>
           <th>Reward Profile</th>
