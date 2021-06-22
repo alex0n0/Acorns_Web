@@ -25,6 +25,12 @@ export class EditCardScreenComponent implements OnInit, OnDestroy {
     },
   ];
 
+  formState = {
+    submitting: false,
+    success: false,
+    error: undefined,
+  };
+
   constructor(
     private httpService: HttpService,
     private activatedRoute: ActivatedRoute
@@ -32,9 +38,8 @@ export class EditCardScreenComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.$routeSub = this.activatedRoute.params.subscribe((params) => {
-      this.httpService.getBusinessCard(params['id']).subscribe(res => {
+      this.httpService.getBusinessCard(params['id']).subscribe((res) => {
         this.card = res;
-        console.log(this.card);
       });
     });
   }
@@ -42,4 +47,33 @@ export class EditCardScreenComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.$routeSub?.unsubscribe();
   }
+
+  handleSubmitCardDetailsForm = ({
+    cardId,
+    cardName,
+    cardImage,
+    cardRewardProfileId,
+  }: {
+    cardId: string | undefined;
+    cardName: string;
+    cardImage: string | undefined;
+    cardRewardProfileId: string | undefined;
+  }) => {
+    this.formState = {
+      ...this.formState,
+      submitting: true,
+      success: false,
+    };
+    this.httpService
+      .updateBusinessCard(cardId ? cardId : '', cardName, cardImage, cardRewardProfileId)
+      .subscribe((res) => {
+        setTimeout(() => {
+          this.formState = {
+            ...this.formState,
+            submitting: false,
+            success: true,
+          };
+        }, 1000);
+      });
+  };
 }

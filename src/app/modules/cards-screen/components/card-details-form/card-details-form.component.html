@@ -34,7 +34,7 @@
             style="background-color: rgb(236, 236, 236)"
           >
             <div class="background border border-dashed rounded"></div>
-            <div class="body">
+            <!-- <div class="body flex-column">
               <mat-icon>file_download</mat-icon>
               <span>Drop an image here</span>
               <span>OR</span>
@@ -42,11 +42,27 @@
                 mat-flat-button
                 color="primary"
                 class="text-accent-l"
-                (click)="addImage()"
+                (click)="handleAddImage()"
               >
                 Choose a file
               </button>
-              <!-- <input type="file" > -->
+            </div> -->
+            <div class="p-4 body flex-column">
+              <input
+                #url
+                placeholder="Enter url"
+                style="height: 2.3rem"
+                class="mb-2 px-2 w-100 rounded border"
+                [value]="cardImage ? cardImage : ''"
+              />
+              <button
+                mat-flat-button
+                color="primary"
+                class="w-100 text-accent-l"
+                (click)="handleAddImageUrl(url.value)"
+              >
+                Choose a file
+              </button>
             </div>
           </div>
         </app-card>
@@ -91,14 +107,17 @@
     </div>
   </div>
   <div class="mt-100 row">
-    <div *ngIf="!formState.success" class="col-12 col-md-6 offset-md-2 d-flex align-items-center">
+    <div
+      *ngIf="!formState.success"
+      class="col-12 col-md-6 offset-md-2 d-flex align-items-center"
+    >
       <span>
         <button
           *ngIf="!formState.submitting"
           mat-flat-button
           color="primary"
           class="me-3 text-accent-l"
-          (click)="submit()"
+          (click)="handleSubmitCardDetailsForm()"
           [disabled]="formState.submitting"
         >
           Save changes
@@ -108,7 +127,6 @@
           mat-flat-button
           color="primary"
           class="me-3 button--primary"
-          (click)="submit()"
           disabled
         >
           Save changes
@@ -118,20 +136,24 @@
         <button
           mat-flat-button
           color="primary"
-          (click)="goBack()"
+          (click)="handleGoBack()"
           [disabled]="formState.submitting"
         >
           Cancel
         </button>
       </span>
-      <mat-spinner *ngIf="formState.submitting" color="accent" diameter="35"></mat-spinner>
+      <mat-spinner
+        *ngIf="formState.submitting"
+        color="accent"
+        diameter="35"
+      ></mat-spinner>
     </div>
     <div *ngIf="formState.success" class="col-12 col-md-6 offset-md-2">
       <button
         mat-flat-button
         color="primary"
         class="me-3 text-accent-l"
-        (click)="done()"
+        (click)="handleDone()"
         [disabled]="formState.submitting"
       >
         Done

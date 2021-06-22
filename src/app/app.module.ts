@@ -20,7 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 // pages
 import { DashboardScreenComponent } from './modules/dashboard-screen/dashboard-screen.component';
 import { CardsScreenComponent } from './modules/cards-screen/cards-screen.component';
@@ -96,7 +96,8 @@ import { UserSettingsComponent } from './modules/settings-screen/components/user
     MatInputModule,
     MatSelectModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

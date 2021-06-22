@@ -8,8 +8,23 @@
       <div class="p-5 px-3 px-md-5 page__background">
         <app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
 
-        <h1>Edit Reward Profile</h1>
-        <app-reward-profile-form></app-reward-profile-form>
+        <div class="row">
+          <div class="col-12 col-md-8 d-flex flex-wrap align-items-center">
+            <h1 class="m-0 me-auto text-nowrap">Edit Reward Profile</h1>
+            <button
+              mat-flat-button
+              color="warn"
+              (click)="handleDeleteRewardProfile()"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+        <app-reward-profile-form
+          [formState]="formState"
+          [rewardProfile]="rewardProfile"
+          (submitRewardProfileForm)="handleSubmitRewardProfileForm($event)"
+        ></app-reward-profile-form>
       </div>
     </div>
   </mat-drawer-content>

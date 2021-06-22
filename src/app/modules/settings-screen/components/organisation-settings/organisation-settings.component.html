@@ -2,45 +2,111 @@
   <h1 class="mb-5">Organisation Settings</h1>
   <!-- <mat-accordion class="example-headers-align" multi> -->
   <mat-accordion class="example-headers-align">
-    <!-- <mat-expansion-panel hideToggle> -->
-    <mat-expansion-panel>
+    <mat-expansion-panel
+      [expanded]="organisationDetailsFormState.expanded"
+      (opened)="handleOpenedOrganisationDetailsForm()"
+      [hideToggle]="
+        organisationDetailsFormState.submitting ||
+        organisationDetailsFormState.message.length > 0
+      "
+    >
       <mat-expansion-panel-header>
-        <mat-panel-title> Organisation Details </mat-panel-title>
-        <!-- <mat-panel-description>
-          Type your name and age
-        </mat-panel-description> -->
-        <!-- <mat-icon>account_circle</mat-icon> -->
+        <mat-panel-title> Organisation Details</mat-panel-title>
+        <span
+          *ngIf="organisationDetailsFormState.message.length > 0 && !organisationDetailsFormState.submitting"
+          class="text-accent"
+          >{{ organisationDetailsFormState.message }}</span
+        >
+        <mat-spinner
+          *ngIf="organisationDetailsFormState.submitting"
+          color="accent"
+          diameter="20"
+        ></mat-spinner>
       </mat-expansion-panel-header>
 
       <div>
-        asdfasdf
+        <div class="py-5">
+          <p>helloo world</p>
+        </div>
         <div class="d-flex justify-content-end">
           <span class="cancel">
-            <button mat-flat-button color="primary" class="me-3">Cancel</button>
+            <button
+              mat-flat-button
+              color="primary"
+              (click)="organisationDetailsFormState.expanded = false"
+              [disabled]="organisationDetailsFormState.submitting"
+            >
+              Cancel
+            </button>
           </span>
-          <button mat-flat-button color="primary" class="text-accent-l">
+          <button
+            *ngIf="organisationDetailsFormState.submitting"
+            mat-flat-button
+            color="primary"
+            class="ms-3 button--primary"
+            disabled
+          >
+            Save
+          </button>
+          <button
+            *ngIf="!organisationDetailsFormState.submitting"
+            mat-flat-button
+            color="primary"
+            class="ms-3 text-accent-l"
+            (click)="handleSubmitOrganisationDetailsForm()"
+            [disabled]="organisationDetailsFormState.submitting"
+          >
             Save
           </button>
         </div>
       </div>
     </mat-expansion-panel>
 
-    <mat-expansion-panel>
+    <mat-expansion-panel
+      [expanded]="billingDetailsFormState.expanded"
+      (opened)="billingDetailsFormState.expanded = true"
+      [hideToggle]="billingDetailsFormState.submitting"
+    >
       <mat-expansion-panel-header>
         <mat-panel-title> Billing Details </mat-panel-title>
-        <!-- <mat-panel-description>
-          Inform the date you wish to travel
-        </mat-panel-description> -->
-        <!-- <mat-icon>date_range</mat-icon> -->
+        <mat-spinner
+          *ngIf="billingDetailsFormState.submitting"
+          color="accent"
+          diameter="20"
+        ></mat-spinner>
       </mat-expansion-panel-header>
 
       <div>
-        asdfasdf
+        <div class="py-5">
+          <p>helloo world</p>
+        </div>
         <div class="d-flex justify-content-end">
           <span class="cancel">
-            <button mat-flat-button color="primary" class="me-3">Cancel</button>
+            <button
+              mat-flat-button
+              color="primary"
+              (click)="billingDetailsFormState.expanded = false"
+              [disabled]="billingDetailsFormState.submitting"
+            >
+              Cancel
+            </button>
           </span>
-          <button mat-flat-button color="primary" class="text-accent-l">
+          <button
+            *ngIf="billingDetailsFormState.submitting"
+            mat-flat-button
+            color="primary"
+            class="ms-3 button--primary"
+            disabled
+          >
+            Save
+          </button>
+          <button
+            *ngIf="!billingDetailsFormState.submitting"
+            mat-flat-button
+            color="primary"
+            class="ms-3 text-accent-l"
+            [disabled]="billingDetailsFormState.submitting"
+          >
             Save
           </button>
         </div>

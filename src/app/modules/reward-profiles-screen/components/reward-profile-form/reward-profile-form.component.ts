@@ -1,36 +1,57 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Location } from '@angular/common';
 import { HttpService } from 'src/app/core/services/http/http.service';
+import { CreateRewardProfile, RewardProfile, UpdateRewardProfile } from 'src/app/core/services/data/mockRepository.service';
 
 @Component({
   selector: 'app-reward-profile-form',
   templateUrl: './reward-profile-form.component.html',
-  styleUrls: ['./reward-profile-form.component.scss']
+  styleUrls: ['./reward-profile-form.component.scss'],
 })
 export class RewardProfileFormComponent implements OnInit {
-
-  @Input() options = {
-    createNewProfile: false
+  @Input() formState = {
+    submitting: false,
+    success: false,
+    error: undefined,
   };
 
-  rewardProfileConfigId = undefined;
-  rewardProfileConfigs:any[] = [];
+  @Input() rewardProfile: RewardProfile | undefined;
 
-  constructor(private httpService: HttpService, private location: Location) { }
+  @Output() submitRewardProfileForm = new EventEmitter<CreateRewardProfile | UpdateRewardProfile>();
+
+  rewardConfigs: any[] = [];
+
+  rewardProfileId: string | undefined = undefined;
+  rewardProfileName: string = '';
+  rewardConfigId: string | undefined = undefined;
+
+  constructor(private httpService: HttpService, private location: Location) {}
 
   ngOnInit(): void {
-    this.httpService.getRewardProfileConfigs().subscribe(res => {
-      this.rewardProfileConfigs = res;
-      this.rewardProfileConfigId = this.rewardProfileConfigs[0].Id;
+    this.httpService.getRewardConfigs().subscribe((res) => {
+      this.rewardConfigs = res;
+    });
+
+    if (this.rewardProfile != null) {
+      this.rewardProfileId = this.rewardProfile.Id;
+      this.rewardProfileName = this.rewardProfile.Name;
+      this.rewardConfigId = this.rewardProfile.RewardConfig?.Id;
+    }
+  }
+
+  handleSubmitRewardProfileForm(): void {
+    this.submitRewardProfileForm.emit({
+      id: this.rewardProfileId,
+      name: this.rewardProfileName,
+      rewardConfigId: this.rewardConfigId,
     });
   }
 
-  goBack():void {
+  handleGoBack(): void {
     this.location.back();
   }
 
-  submit():void {
-    
+  handleDone(): void {
+    this.location.back();
   }
-
 }

@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { AuthService } from 'src/app/core/services/http/auth.service';
-import { v4 as uuid } from 'uuid';
+import { Card } from 'src/app/core/services/data/mockRepository.service';
 
 @Component({
   selector: 'app-card-details-form',
@@ -11,25 +11,30 @@ import { v4 as uuid } from 'uuid';
   styleUrls: ['./card-details-form.component.scss'],
 })
 export class CardDetailsFormComponent implements OnInit {
-  @Input() options = {
-    createNewCard: false,
-  };
-  @Input() card: any;
 
-  formState = {
+  @Input() formState = {
     submitting: false,
     success: false,
     error: undefined,
   };
 
+  @Input() card: Card | undefined;
+
+  @Output() submitCardDetailsForm = new EventEmitter<{
+    cardId: string | undefined;
+    cardName: string;
+    cardImage: string | undefined;
+    cardRewardProfileId: string | undefined;
+  }>();
+
   creditCardAdded: boolean = false;
 
   rewardProfiles: any[] = [];
 
-  cardId: string = uuid();
+  cardId: string | undefined = undefined;
   cardName: string = '';
-  cardRewardProfileId: string | undefined = undefined;
   cardImage: string | undefined = undefined;
+  cardRewardProfileId: string | undefined = undefined;
 
   constructor(
     private authService: AuthService,
@@ -63,61 +68,37 @@ export class CardDetailsFormComponent implements OnInit {
     );
   }
 
-  addImage(): void {
+  handleAddImage(): void {
     this.cardImage = 'https://i.colnect.net/f/3379/433/Hoyts-Rewards-Black.jpg';
   }
 
-  submit(): void {
+  handleAddImageUrl = (url:string) => {
+    if (url.length > 0) {
+      console.log(url.length);
+      this.cardImage = url;
+    }
+  }
+
+  handleSubmitCardDetailsForm(): void {
     console.log(
       this.cardId,
       this.cardName,
       this.cardImage,
       this.cardRewardProfileId
     );
-
-    this.formState.submitting = true;
-
-    if (this.options.createNewCard) {
-      this.httpService
-        .createBusinessCard(
-          this.cardName,
-          this.cardImage,
-          this.cardRewardProfileId
-        )
-        .subscribe((res) => {
-          setTimeout(() => {
-            this.formState = {
-              ...this.formState,
-              submitting: false,
-              success: true,
-            };
-          }, 1000);
-        });
-    } else {
-      this.httpService
-        .patchBusinessCard(
-          this.cardId,
-          this.cardName,
-          this.cardImage,
-          this.cardRewardProfileId
-        )
-        .subscribe((res) => {
-          setTimeout(() => {
-            this.formState = {
-              ...this.formState,
-              submitting: false,
-              success: true,
-            };
-          }, 1000);
-        });
-    }
+    this.submitCardDetailsForm.emit({
+      cardId: this.cardId,
+      cardName: this.cardName,
+      cardImage: this.cardImage,
+      cardRewardProfileId: this.cardRewardProfileId,
+    });
   }
 
-  goBack(): void {
+  handleGoBack(): void {
     this.location.back();
   }
 
-  done(): void {
+  handleDone(): void {
     // this.router.navigate(['/cards']);
     this.location.back();
   }

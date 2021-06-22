@@ -27,7 +27,7 @@
       class="px-2 me-3 me-md-0 profileDropdown d-none d-sm-block text-accent"
     >
       <mat-icon>account_circle</mat-icon>
-      <span [class.ms-1]="true">{{ true ? "John Citizen" : null }}</span>
+      <span [class.ms-1]="user">{{ user ? user.FirstName + ' ' + user.LastName : null }}</span>
     </button>
     <mat-menu
       #profileDropdown="matMenu"

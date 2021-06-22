@@ -1,87 +1,4 @@
 <form class="mt-5" (submit)="$event.preventDefault()">
-  <!-- <div class="row">
-    <div class="col-12 col-md-2">
-      <label class="ms-2 mb-2 mt-md-4 mb-md-0 ms-md-0 b-5"
-        >Card Nickname<span class="text-danger">*</span></label
-      >
-    </div>
-    <div class="col-12 col-md-6">
-      <mat-form-field appearance="outline" class="w-100">
-        <input
-          matInput
-          placeholder="Enter a nickname for this card"
-          [value]="card ? (card.Nickname ? card.Nickname : '') : ''"
-        />
-        <mat-hint>
-          Name is used to help you identify cards. The customer will not see
-          this.
-        </mat-hint>
-      </mat-form-field>
-    </div>
-  </div>
-  <div class="mt-5 row">
-    <div class="col-12 col-md-2">
-      <label class="ms-2 mb-2 mt-md-4 mb-md-0 ms-md-0 b-5">
-        Card Image<span class="text-danger">*</span>
-      </label>
-    </div>
-    <div class="col-12 col-md-6">
-      <div style="max-width: 400px">
-        <app-card [options]="{ overrideDesign: true }">
-          <div
-            class="card__contents rounded position-relative"
-            style="background-color: rgb(236, 236, 236)"
-          >
-            <div class="background border border-dashed rounded"></div>
-            <div class="body">
-              <mat-icon>file_download</mat-icon>
-              <span>Drop an image here</span>
-              <span>OR</span>
-              <button mat-flat-button color="primary" class="text-accent-l">
-                Choose a file
-              </button>
-            </div>
-          </div>
-        </app-card>
-      </div>
-    </div>
-  </div>
-  <div class="mt-5 row">
-    <div class="col-12 col-md-2">
-      <label class="ms-2 mb-2 mt-md-4 mb-md-0 ms-md-0 b-5">
-        Attach a reward profile<span class="text-danger">*</span>
-      </label>
-    </div>
-    <div class="mt-0 mt-md-1 col-12 col-md-6">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Choose a reward profile</mat-label>
-        <mat-select
-          id="RewardProfile"
-          [disabled]="!creditCardAdded || rewardProfiles.length === 0"
-        >
-          <ng-container *ngFor="let rewardProfile of rewardProfiles">
-            <mat-option [value]="rewardProfile.Id">{{
-              rewardProfile.Name
-            }}</mat-option>
-          </ng-container>
-        </mat-select>
-        <mat-hint *ngIf="!creditCardAdded">
-          <a routerLink="/settings/billing-details" class="text-accent"
-            >Add a credit card</a
-          >
-          to your account to enable reward profiles
-        </mat-hint>
-        <mat-hint *ngIf="creditCardAdded && rewardProfiles.length === 0">
-          No reward profiles exist.
-          <a
-            routerLink="/reward-profiles/create-reward-profile"
-            class="text-accent"
-            >Create one now</a
-          >.
-        </mat-hint>
-      </mat-form-field>
-    </div>
-  </div> -->
   <div class="row">
     <div class="col-12 col-md-2">
       <label class="ms-2 mb-2 mt-md-4 mb-md-0 ms-md-0 b-5"
@@ -90,12 +7,12 @@
     </div>
     <div class="col-12 col-md-6">
       <mat-form-field appearance="outline" class="w-100">
-        <!-- <input
+        <input
           matInput
-          placeholder="Enter a nickname for this card"
-          [value]="card ? (card.Nickname ? card.Nickname : '') : ''"
-        /> -->
-        <input matInput placeholder="Enter a name for this reward profile" />
+          placeholder="Enter a name for this reward profile"
+          name="name"
+          [(ngModel)]="rewardProfileName"
+        />
       </mat-form-field>
     </div>
   </div>
@@ -108,66 +25,102 @@
     <div class="mt-0 mt-md-1 col-12 col-md-6">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Select config</mat-label>
-        <!-- <mat-select
-          id="RewardProfile"
-          [disabled]="!creditCardAdded || rewardProfiles.length === 0"
-        > -->
-        <mat-select id="RewardProfile" [(value)]="rewardProfileConfigId">
-          <ng-container
-            *ngFor="let rewardProfileConfig of rewardProfileConfigs"
-          >
+        <mat-select [(value)]="rewardConfigId">
+          <ng-container *ngFor="let rewardConfig of rewardConfigs">
             <mat-option
-              [value]="rewardProfileConfig.Id"
-              [disabled]="rewardProfileConfig.IsPremium"
-              >{{ rewardProfileConfig.Title | titlecase}}
-              {{ rewardProfileConfig.IsPremium ? '(Premium)' : null}}</mat-option
+              [value]="rewardConfig.Id"
+              [disabled]="rewardConfig.IsPremium"
+              >{{ rewardConfig.Title | titlecase }}
+              {{ rewardConfig.IsPremium ? "(Premium)" : null }}</mat-option
             >
           </ng-container>
         </mat-select>
-        <!-- <mat-hint>
-          No reward profiles exist.
-        </mat-hint> -->
       </mat-form-field>
-      <!-- <ng-container *ngSwitch -->
     </div>
   </div>
-  <div class="mt-5 row scheme__configs">
+  <!-- <div class="mt-5 row scheme__configs">
     <div class="col-12 col-md-6 offset-md-2">
-      <ng-container *ngSwitch=""></ng-container>
-      <div class="d-flex flex-wrap align-items-center">
-        <span>Spend</span>
-        <mat-form-field appearance="outline" class="m-0" [style.width.px]="100">
-          <mat-icon matPrefix>attach_money</mat-icon>
-          <input matInput placeholder="5" type="number" />
-        </mat-form-field>
-        <span>to earn</span>
-        <mat-form-field
-          appearance="outline"
-          class="m-0 p-0 short"
-          [style.width.px]="100"
-        >
-          <input matInput placeholder="1" type="number" />
-        </mat-form-field>
-        <span>points</span>
-      </div>
-      <div></div>
+      <ng-container [ngSwitch]="rewardConfigId">
+        <ng-container *ngFor="let rewardConfig of rewardConfigs">
+          <div *ngSwitchCase="rewardConfig.Id">
+            {{ rewardConfig.Title | titlecase }}
+            <div class="d-flex flex-wrap align-items-center">
+              <span>Spend</span>
+              <mat-form-field
+                appearance="outline"
+                class="m-0"
+                [style.width.px]="100"
+              >
+                <mat-icon matPrefix>attach_money</mat-icon>
+                <input matInput placeholder="5" type="number" />
+              </mat-form-field>
+              <span>to earn</span>
+              <mat-form-field
+                appearance="outline"
+                class="m-0 p-0 short"
+                [style.width.px]="100"
+              >
+                <input matInput placeholder="1" type="number" />
+              </mat-form-field>
+              <span>points</span>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
     </div>
-  </div>
+  </div> -->
   <div class="mt-100 row">
-    <div class="col-12 col-md-6 offset-md-2">
+    <div
+      *ngIf="!formState.success"
+      class="col-12 col-md-6 offset-md-2 d-flex align-items-center"
+    >
+      <span>
+        <button
+          *ngIf="!formState.submitting"
+          mat-flat-button
+          color="primary"
+          class="me-3 text-accent-l"
+          (click)="handleSubmitRewardProfileForm()"
+          [disabled]="formState.submitting"
+        >
+          Save changes
+        </button>
+        <button
+          *ngIf="formState.submitting"
+          mat-flat-button
+          color="primary"
+          class="me-3 button--primary"
+          disabled
+        >
+          Save changes
+        </button>
+      </span>
+      <span class="cancel me-3">
+        <button
+          mat-flat-button
+          color="primary"
+          (click)="handleGoBack()"
+          [disabled]="formState.submitting"
+        >
+          Cancel
+        </button>
+      </span>
+      <mat-spinner
+        *ngIf="formState.submitting"
+        color="accent"
+        diameter="35"
+      ></mat-spinner>
+    </div>
+    <div *ngIf="formState.success" class="col-12 col-md-6 offset-md-2">
       <button
         mat-flat-button
         color="primary"
         class="me-3 text-accent-l"
-        (click)="submit()"
+        (click)="handleDone()"
+        [disabled]="formState.submitting"
       >
-        Save changes
+        Done
       </button>
-      <span class="cancel">
-        <button mat-flat-button color="primary" (click)="goBack()">
-          Cancel
-        </button>
-      </span>
     </div>
   </div>
 </form>

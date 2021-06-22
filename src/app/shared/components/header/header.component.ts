@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { AuthService } from 'src/app/core/services/http/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +10,14 @@ export class HeaderComponent implements OnInit {
 
   @Output() drawerToggled = new EventEmitter();
   
-  constructor() { }
+  user: any | undefined;
+
+  constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
+    this.authService.getUserDetails().subscribe(res => {
+      this.user = res;
+    });
   }
 
   toggleDrawer = () => {

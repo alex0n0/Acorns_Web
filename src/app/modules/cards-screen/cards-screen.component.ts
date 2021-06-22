@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Card } from 'src/app/core/services/data/repository.service';
+import { Card } from 'src/app/core/services/data/mockRepository.service';
 import { HttpService } from 'src/app/core/services/http/http.service';
 
 @Component({

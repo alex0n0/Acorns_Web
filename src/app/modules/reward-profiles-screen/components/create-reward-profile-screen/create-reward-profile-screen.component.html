@@ -9,8 +9,11 @@
         <app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
 
         <h1>Create Reward Profile</h1>
-        
-        <app-reward-profile-form></app-reward-profile-form>
+
+        <app-reward-profile-form
+          [formState]="formState"
+          (submitRewardProfileForm)="handleSubmitRewardProfileForm($event)"
+        ></app-reward-profile-form>
       </div>
     </div>
   </mat-drawer-content>

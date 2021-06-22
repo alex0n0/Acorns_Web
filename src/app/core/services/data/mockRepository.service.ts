@@ -4,9 +4,9 @@ import { v4 as uuid } from 'uuid';
 export interface Card {
   Id: string;
   Name: string;
-  CardImage?: string;
   IsActive: boolean;
-  RewardProfile:
+  CardImage?: string | undefined;
+  RewardProfile?:
     | undefined
     | null
     | {
@@ -16,10 +16,46 @@ export interface Card {
   CreatedDate: Date;
 }
 
+export interface CreateCard {}
+
+export interface UpdateCard {}
+
+export interface RewardConfigSimple {
+  Id: string;
+  Title: string;
+}
+
+export interface RewardConfig {
+  Id: string;
+  Title: string;
+  IsPremium?: boolean;
+}
+
+export interface RewardProfileSimple {
+  Id: string;
+  Name: string;
+}
+
+export interface RewardProfile {
+  Id: string;
+  Name: string;
+  RewardConfig?: RewardConfig;
+}
+
+export interface CreateRewardProfile {
+  name: string;
+  rewardConfigId: string | undefined;
+}
+export interface UpdateRewardProfile {
+  id?: string | undefined;
+  name: string;
+  rewardConfigId: string | undefined;
+}
+
 @Injectable({
   providedIn: 'root',
 })
-export class RepositoryService {
+export class MockRepositoryService {
   userDetails = {
     UserId: uuid(),
     FirstName: 'John',
@@ -65,25 +101,25 @@ export class RepositoryService {
           CustomerId: this.customerUserAccounts[0].Id,
           DateTime: new Date('2021-01-17T10:24:00'),
           PointsEarned: 5,
-          PointsUsed: 10,
+          PointsSpent: 10,
         },
         {
           CustomerId: this.customerUserAccounts[2].Id,
           DateTime: new Date('2021-01-17T11:24:00'),
           PointsEarned: 5,
-          PointsUsed: 0,
+          PointsSpent: 0,
         },
         {
           CustomerId: this.customerUserAccounts[1].Id,
           DateTime: new Date('2021-01-17T14:24:00'),
           PointsEarned: 10,
-          PointsUsed: 2,
+          PointsSpent: 2,
         },
         {
           CustomerId: this.customerUserAccounts[2].Id,
           DateTime: new Date('2021-01-17T16:24:00'),
           PointsEarned: 0,
-          PointsUsed: 20,
+          PointsSpent: 20,
         },
       ],
     },
@@ -94,19 +130,19 @@ export class RepositoryService {
           CustomerId: this.customerUserAccounts[0].Id,
           DateTime: new Date('2021-01-18T10:24:00'),
           PointsEarned: 5,
-          PointsUsed: 0,
+          PointsSpent: 0,
         },
         {
           CustomerId: this.customerUserAccounts[2].Id,
           DateTime: new Date('2021-01-18T11:24:00'),
           PointsEarned: 4,
-          PointsUsed: 0,
+          PointsSpent: 0,
         },
         {
           CustomerId: this.customerUserAccounts[1].Id,
           DateTime: new Date('2021-01-18T14:24:00'),
           PointsEarned: 2,
-          PointsUsed: 0,
+          PointsSpent: 0,
         },
       ],
     },
@@ -117,102 +153,118 @@ export class RepositoryService {
           CustomerId: this.customerUserAccounts[0].Id,
           DateTime: new Date('2021-01-17T10:24:00'),
           PointsEarned: 5,
-          PointsUsed: 10,
+          PointsSpent: 10,
         },
         {
           CustomerId: this.customerUserAccounts[2].Id,
           DateTime: new Date('2021-01-17T11:24:00'),
           PointsEarned: 5,
-          PointsUsed: 0,
+          PointsSpent: 0,
         },
         {
           CustomerId: this.customerUserAccounts[1].Id,
           DateTime: new Date('2021-01-17T14:24:00'),
           PointsEarned: 10,
-          PointsUsed: 2,
+          PointsSpent: 2,
         },
         {
           CustomerId: this.customerUserAccounts[2].Id,
           DateTime: new Date('2021-01-17T16:24:00'),
           PointsEarned: 0,
-          PointsUsed: 20,
+          PointsSpent: 20,
         },
         {
           CustomerId: this.customerUserAccounts[2].Id,
           DateTime: new Date('2021-01-17T16:24:00'),
           PointsEarned: 0,
-          PointsUsed: 20,
+          PointsSpent: 20,
         },
         {
           CustomerId: this.customerUserAccounts[2].Id,
           DateTime: new Date('2021-01-17T16:24:00'),
           PointsEarned: 0,
-          PointsUsed: 20,
+          PointsSpent: 20,
         },
         {
           CustomerId: this.customerUserAccounts[2].Id,
           DateTime: new Date('2021-01-17T16:24:00'),
           PointsEarned: 0,
-          PointsUsed: 20,
+          PointsSpent: 20,
         },
         {
           CustomerId: this.customerUserAccounts[2].Id,
           DateTime: new Date('2021-01-17T16:24:00'),
           PointsEarned: 0,
-          PointsUsed: 20,
+          PointsSpent: 20,
         },
         {
           CustomerId: this.customerUserAccounts[2].Id,
           DateTime: new Date('2021-01-17T16:24:00'),
           PointsEarned: 0,
-          PointsUsed: 20,
+          PointsSpent: 20,
         },
         {
           CustomerId: this.customerUserAccounts[2].Id,
           DateTime: new Date('2021-01-17T16:24:00'),
           PointsEarned: 0,
-          PointsUsed: 20,
+          PointsSpent: 20,
         },
         {
           CustomerId: this.customerUserAccounts[2].Id,
           DateTime: new Date('2021-01-17T16:24:00'),
           PointsEarned: 0,
-          PointsUsed: 20,
+          PointsSpent: 20,
         },
       ],
     },
   ];
 
-  rewardProfileConfigs = [
+  rewardConfigs = [
     { Id: uuid(), Title: 'basic points' },
     { Id: uuid(), Title: 'basic credits' },
     { Id: uuid(), Title: 'basic rewards' },
     { Id: uuid(), Title: 'tiered', IsPremium: true },
   ];
 
-  rewardProfiles = [
+  rewardProfiles: RewardProfile[] = [
     {
       Name: 'free muffins',
       Id: uuid(),
+      RewardConfig: {
+        Id: this.rewardConfigs[0].Id,
+        Title: this.rewardConfigs[0].Title,
+      },
     },
     {
       Name: 'free points',
       Id: uuid(),
+      RewardConfig: {
+        Id: this.rewardConfigs[3].Id,
+        Title: this.rewardConfigs[3].Title,
+      },
     },
     {
       Name: 'VIP rewards',
       Id: uuid(),
+      RewardConfig: {
+        Id: this.rewardConfigs[2].Id,
+        Title: this.rewardConfigs[2].Title,
+      },
     },
     {
       Name: 'test profile',
       Id: uuid(),
+      RewardConfig: {
+        Id: this.rewardConfigs[1].Id,
+        Title: this.rewardConfigs[1].Title,
+      },
     },
   ];
 
   businessCards: Card[] = [
     {
       Id: 'aaa',
-      IsActive: true,
+      IsActive: false,
       Name: 'First Card',
       RewardProfile: undefined,
       CreatedDate: new Date(),
@@ -222,14 +274,20 @@ export class RepositoryService {
       Id: 'bbb',
       IsActive: false,
       Name: 'Test card',
-      RewardProfile: this.rewardProfiles[3],
+      RewardProfile: {
+        Id: this.rewardProfiles[3].Id,
+        Name: this.rewardProfiles[3].Name,
+      },
       CreatedDate: new Date(),
     },
     {
       Id: 'ccc',
       IsActive: false,
       Name: 'dummy design',
-      RewardProfile: this.rewardProfiles[1],
+      RewardProfile: {
+        Id: this.rewardProfiles[1].Id,
+        Name: this.rewardProfiles[1].Name,
+      },
       CreatedDate: new Date(),
     },
     {
@@ -243,7 +301,10 @@ export class RepositoryService {
       Id: 'eee',
       IsActive: false,
       Name: 'Old',
-      RewardProfile: this.rewardProfiles[2],
+      RewardProfile: {
+        Id: this.rewardProfiles[2].Id,
+        Name: this.rewardProfiles[2].Name,
+      },
       CreatedDate: new Date(),
     },
   ];
@@ -261,11 +322,11 @@ export class RepositoryService {
     return {
       // ACCOUNT
       getUserDetails: () => {
-        return {...this.userDetails};
+        return { ...this.userDetails };
       },
       // ORG
       getOrgDetails: () => {
-        return {...this.orgDetails};
+        return { ...this.orgDetails };
       },
       getBusinessUserAccounts: () => {
         return [...this.businessUserAccounts];
@@ -278,11 +339,63 @@ export class RepositoryService {
         return [...this.customerTransactions];
       },
       // REWARD PROFILES
-      getRewardProfileConfigs: () => {
-        return [...this.rewardProfileConfigs];
+      getRewardConfigs: () => {
+        return [...this.rewardConfigs];
+      },
+      createRewardProfile: (
+        name: string,
+        rewardConfigId: string | undefined
+      ) => {
+        let rewardConfig;
+        if (rewardConfigId) {
+          rewardConfig = this.rewardConfigs.find(
+            (config) => config.Id == rewardConfigId
+          );
+        }
+        if (rewardConfig) {
+          rewardConfig = {
+            Id: rewardConfig.Id,
+            Title: rewardConfig.Title,
+          };
+        }
+        let rewardProfile = {
+          Id: uuid(),
+          Name: name,
+          RewardConfig: rewardConfig,
+        };
+        this.rewardProfiles.push(rewardProfile);
+        return true;
       },
       getRewardProfiles: () => {
         return [...this.rewardProfiles];
+      },
+      getRewardProfile: (id: string) => {
+        return [...this.rewardProfiles].find((profile) => {
+          return profile.Id == id;
+        });
+      },
+      updateRewardProfile: (
+        id: string | undefined,
+        name: string,
+        rewardConfigId: string | undefined
+      ) => {
+        let rewardConfig: RewardConfigSimple | undefined;
+        rewardConfig = this.rewardConfigs.find(
+          (config) => config.Id == rewardConfigId
+        );
+        this.rewardProfiles.find((profile) => {
+          if (profile.Id == id) {
+            profile.Name = name;
+            profile.RewardConfig = rewardConfig;
+          }
+        });
+        return true;
+      },
+      deleteRewardProfile: (id: string) => {
+        this.rewardProfiles = this.rewardProfiles.filter(
+          (profile) => profile.Id != id
+        );
+        return true;
       },
       // BUSINESS CARDS
       createBusinessCard: (
@@ -306,27 +419,29 @@ export class RepositoryService {
       },
       getBusinessCards: this.getBusinessCards,
       getBusinessCard: (id: string) => {
-        let cards = [...this.businessCards];
-        let card = cards.find((card) => {
+        return [...this.businessCards].find((card) => {
           return card.Id == id;
         });
-        return card;
       },
-      patchBusinessCard: (
+      updateBusinessCard: (
         id: string,
         name: string,
         cardImage: string | undefined,
         rewardProfileId: string | undefined
       ) => {
+        let rewardProfile: RewardProfileSimple | undefined;
+        rewardProfile = this.rewardProfiles.find(
+          (profile) => profile.Id == rewardProfileId
+        );
+        if (rewardProfile) {
+          rewardProfile = { Id: rewardProfile.Id, Name: rewardProfile.Name };
+        }
+
         this.businessCards.map((card) => {
           if (card.Id == id) {
             card.Name = name;
             card.CardImage = cardImage;
-            card.RewardProfile = rewardProfileId
-              ? this.rewardProfiles.find(
-                  (profile) => profile.Id == rewardProfileId
-                )
-              : undefined;
+            card.RewardProfile = rewardProfile;
           }
         });
         return true;
